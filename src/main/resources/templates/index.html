@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/css/layui.css">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<ul class="layui-nav layui-layout-left">
+				<li class="layui-nav-item layadmin-flexible"><a
+					href="javascript:;" title="侧边伸缩"> <i
+						class="layui-icon layui-icon-spread-left" id="LAY_app_flexible"></i>
+				</a></li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item"><a href="javascript:;"> <img
+						src="http://t.cn/RCzsdCq" class="layui-nav-img"> Smile
+				</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="">基本资料</a>
+						</dd>
+						<dd>
+							<a href="">安全设置</a>
+						</dd>
+						<dd>
+							<a href="/login/logOut">退出登录</a>
+						</dd>
+					</dl></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree">
+					<li class="layui-nav-item layui-nav-itemed"><a class=""
+						href="javascript:;">所有商品</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a lay-href="/skip/myinfo">个人中心</a>
+							</dd>
+							<dd>
+								<a lay-href="/skip/mydynic">个人动态</a>
+							</dd>
+						</dl></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">
+				<div class="layadmin-tabsbody-item layui-show">
+					<iframe frameborder="0" class="layadmin-iframe"
+						allowtransparency="true"  width="100%" height="100%"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+
+		</div>
+	</div>
+	<script type="text/javascript" src="/js/layui/layui.all.js"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function() {
+			var element = layui.element;
+
+		});
+		$("a").click(function() {
+			var url = this.getAttribute("lay-href");
+			$("iframe").attr("src", url)
+		})
+	</script>
+</body>
+</html>
