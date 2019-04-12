@@ -1,5 +1,6 @@
 package com.smile.user.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -7,9 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.smile.auth.entity.Role;
-
+/**
+  *  用户实体
+ * @author 许永强
+ */
 @Entity
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Long uid;
 	private String username;
