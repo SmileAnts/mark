@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smile.auth.entity.Module;
 import com.smile.auth.entity.Role;
-import com.smile.user.entity.User;
-import com.smile.user.service.IUserService;
+import com.smile.operation.user.entity.User;
+import com.smile.operation.user.service.IUserService;
 import com.smile.util.Exceptions;
 
 public class ShiroRealm extends AuthorizingRealm {

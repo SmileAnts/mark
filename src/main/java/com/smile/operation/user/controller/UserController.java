@@ -1,9 +1,9 @@
-package com.smile.user.controller;
+package com.smile.operation.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.smile.common.BaseController;
+import com.smile.operation.common.BaseController;
 
 /**
  * 用户类 用户得一系列操作

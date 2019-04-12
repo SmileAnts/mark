@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.smile.user.entity.User;
+import com.smile.operation.user.entity.User;
 
 @Entity
 public class Role {

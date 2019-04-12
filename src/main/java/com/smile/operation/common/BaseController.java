@@ -1,4 +1,4 @@
-package com.smile.common;
+package com.smile.operation.common;
 
 public class BaseController {
 

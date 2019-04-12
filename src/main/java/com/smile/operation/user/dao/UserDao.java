@@ -1,10 +1,10 @@
-package com.smile.user.dao;
+package com.smile.operation.user.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.smile.user.entity.User;
+import com.smile.operation.user.entity.User;
 
 @Mapper
 public interface UserDao extends BaseMapper<User> {

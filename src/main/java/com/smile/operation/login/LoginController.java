@@ -1,4 +1,4 @@
-package com.smile.login;
+package com.smile.operation.login;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.smile.user.entity.User;
+import com.smile.operation.user.entity.User;
 import com.smile.util.Constants;
 
 @Controller

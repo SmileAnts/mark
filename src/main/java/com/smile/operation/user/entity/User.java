@@ -1,4 +1,4 @@
-package com.smile.user.entity;
+package com.smile.operation.user.entity;
 
 import java.io.Serializable;
 import java.util.Set;

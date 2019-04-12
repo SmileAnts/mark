@@ -1,7 +1,7 @@
-package com.smile.user.service;
+package com.smile.operation.user.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.smile.user.entity.User;
+import com.smile.operation.user.entity.User;
 
 public interface IUserService extends IService<User> {
 	public Long login(User user);
