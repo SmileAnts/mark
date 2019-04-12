@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smile.user.dao.UserDao.java">
-	<resultMap type="com.xyqproject.first.project.entity.User"
+	<resultMap type="com.smile.operation.user.dao.UserDao"
 		id="userMapper">
 		<id property="uid" column="uid"/>
 		<result property="username" column="username" />
