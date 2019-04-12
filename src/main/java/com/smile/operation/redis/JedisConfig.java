@@ -1,4 +1,4 @@
-package com.smile.redis;
+package com.smile.operation.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
