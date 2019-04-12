@@ -1,12 +1,12 @@
-package com.xyqproject.first.project.mapper;
+package com.smile.user.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.xyqproject.first.project.entity.User;
+import com.smile.user.entity.User;
 
 @Mapper
-public interface UserMapper {
+public interface UserDao {
 	public Long login(@Param("user") User user);
 	public User findByUserName(String username);
 }

@@ -1,4 +1,4 @@
-package com.xyqproject.spring.realm;
+package com.smile.auth;
 
 import java.util.LinkedHashMap;
 

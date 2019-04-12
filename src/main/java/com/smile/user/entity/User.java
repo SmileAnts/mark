@@ -1,10 +1,12 @@
-package com.xyqproject.first.project.entity;
+package com.smile.user.entity;
 
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.smile.auth.entity.Role;
 
 @Entity
 public class User {

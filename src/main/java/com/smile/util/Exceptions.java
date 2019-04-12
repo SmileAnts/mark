@@ -1,4 +1,4 @@
-package com.xyqproject.util;
+package com.smile.util;
 
 /**
  * 异常工具类

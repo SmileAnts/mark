@@ -1,4 +1,4 @@
-package com.xyqproject.spring.realm;
+package com.smile.auth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.xyqproject.first.project.entity.Module;
-import com.xyqproject.first.project.entity.Role;
-import com.xyqproject.first.project.entity.User;
-import com.xyqproject.first.project.service.IUserService;
-import com.xyqproject.util.Exceptions;
+import com.smile.auth.entity.Module;
+import com.smile.auth.entity.Role;
+import com.smile.user.entity.User;
+import com.smile.user.service.IUserService;
+import com.smile.util.Exceptions;
 
 public class ShiroRealm extends AuthorizingRealm {
 

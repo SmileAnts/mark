@@ -1,4 +1,4 @@
-package com.xyqproject.spring.realm;
+package com.smile.auth;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

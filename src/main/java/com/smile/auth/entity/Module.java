@@ -1,4 +1,4 @@
-package com.xyqproject.first.project.entity;
+package com.smile.auth.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,4 @@
-package com.xyqproject.first.project;
+package com.smile.login;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xyqproject.first.project.entity.User;
-import com.xyqproject.util.Constants;
+import com.smile.user.entity.User;
+import com.smile.util.Constants;
 
 @Controller
 @RequestMapping("/login")

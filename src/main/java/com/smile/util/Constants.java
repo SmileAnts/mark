@@ -1,4 +1,4 @@
-package com.xyqproject.util;
+package com.smile.util;
 
 /**
  * 常量类
