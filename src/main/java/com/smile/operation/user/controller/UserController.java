@@ -15,4 +15,13 @@ import com.smile.operation.common.BaseController;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
+	/**
+	 * 注册新用户
+	 * 
+	 * @return
+	 */
+	public Object register() {
+
+		return null;
+	}
 }
