@@ -1,9 +1,12 @@
 package com.smile.operation.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smile.operation.common.BaseController;
+import com.smile.operation.user.entity.User;
+import com.smile.operation.user.service.IUserService;
 
 /**
  * 用户类 用户得一系列操作
@@ -15,12 +18,27 @@ import com.smile.operation.common.BaseController;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
+	@Autowired
+	private IUserService userService;
+
 	/**
 	 * 注册新用户
 	 * 
 	 * @return
 	 */
-	public Object register() {
+	public Object register(User user) {
+		if (user.getUsername() == null || user.getPassword() == null) {
+			
+		}
+		return null;
+	}
+
+	/**
+	 * 判断注册用户是否存在
+	 * 
+	 * @return
+	 */
+	private Object checkUser() {
 
 		return null;
 	}
