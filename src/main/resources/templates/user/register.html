@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="/css/layui.css">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/layui/layui.all.js"></script>
+
+</head>
+<body>
+	<div id="center">
+		<form class="layui-form" id="form" action="/login/index" method="post">
+			<label class="tipinfo">密码登录</label>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<input type="text" name="username" placeholder="用户名"
+						autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<input type="password" name="password" placeholder="请输入密码"
+						autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<p>
+				<input type="button" class="login" value="登录" onclick="login()" />
+			</p>
+			<span id="tip" style="display: none">账号或密码错误</span>
+		</form>
+	</div>
+	<script type="text/javascript">
+		layui.use('form', function() {
+			var form = layui.form;
+		})
+	</script>
+</body>
+<script type="text/javascript">
+	function login() {
+		$.ajax({
+			type : "POST",
+			dataType : "json",
+			url : "/login/index",
+			data : $("#form").serialize(),
+			success : function(result) {
+				console.log(result)
+				if (!result) {
+					$("#tip").css("display", "");
+				} else {
+					$("#tip").css("display", "none");
+					location.href = "/"
+				}
+			},
+			error : function(result) {
+				console.log(result)
+			}
+		})
+	}
+</script>
+</html>
