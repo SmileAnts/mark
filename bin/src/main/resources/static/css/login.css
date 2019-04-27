@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("/image/background.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#center {
+	position: absolute;
+	text-align: center;
+	top: 30%;
+	left: 50%;
+	width: 30%;
+	height: 40%;
+	margin-left: -15%;
+	background-color: white;
+}
+
+input {
+	width: 90%;
+	height: 20px;
+	background-color: white;
+}
+
+.login {
+	width: 90%;
+	height: 40px;
+	background-color: deepskyblue;
+	color: white;
+	border: none;
+}
+
+.layui-form-item {
+	margin-top: 25px;
+}
+
+.layui-input-block {
+	margin-left: 5%;
+}
+
+.layui-input, .layui-textarea {
+	width: 95%;
+}
+
+.tipinfo {
+	float: left;
+	margin-left: 5%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: blod;
+}
