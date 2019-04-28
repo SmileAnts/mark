@@ -1,22 +1,22 @@
 package com.smile.operation.user.entity;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.smile.auth.entity.Role;
+import com.smile.operation.common.BaseEntity;
+
 /**
-  *  用户实体
+ * 用户实体
+ * 
  * @author 许永强
  */
 @Entity
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
-	private Long uid;
+@Table(name = "user")
+public class User extends BaseEntity {
 	private String username;
 	private String password;
 	@ManyToMany
@@ -28,14 +28,6 @@ public class User implements Serializable {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}
-
-	public Long getId() {
-		return uid;
-	}
-
-	public void setId(Long uid) {
-		this.uid = uid;
 	}
 
 	public String getUsername() {
