@@ -1,26 +1,19 @@
 package com.smile.auth.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.smile.operation.common.BaseEntity;
+
 @Entity
-public class Module {
-	@Id
-	private Long mid;
+public class Module extends BaseEntity {
+	private static final long serialVersionUID = 1L;
+
 	private String mname;
 	@ManyToOne
 	private Role role;
-
-	public Long getId() {
-		return mid;
-	}
-
-	public void setId(Long mid) {
-		this.mid = mid;
-	}
 
 	@Transactional
 	public Role getRole() {

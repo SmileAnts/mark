@@ -15,15 +15,21 @@
 		<form class="layui-form" id="form" action="/login/index" method="post">
 			<label class="tipinfo">密码登录</label>
 			<div class="layui-form-item">
-				<div class="layui-input-block">
+				<div class="layui-input-block layui-col-md8">
 					<input type="text" name="username" placeholder="用户名"
 						autocomplete="off" class="layui-input">
 				</div>
+				<div class="layui-col-md2 layui-input-block" style="text-align: center; align-content: center;padding-top:6px">
+					<a href="/login/register">注册用户</a>
+				</div>
 			</div>
 			<div class="layui-form-item">
-				<div class="layui-input-block">
-					<input type="password" name="password" placeholder="请输入密码"
+				<div class="layui-input-block layui-col-md8">
+					<input style="float: left" type="password" name="password" placeholder="请输入密码"
 						autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-col-md2 layui-input-block" style="text-align: center; align-content: center;padding-top:6px">
+					<span><a href="www.baidu.com">忘记密码</a></span>
 				</div>
 			</div>
 			<p>

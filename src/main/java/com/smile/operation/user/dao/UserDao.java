@@ -11,5 +11,5 @@ public interface UserDao extends BaseMapper<User> {
 
 	public Long login(@Param("user") User user);
 
-	public User findByUserName(String username);
+	public User findByUserName(@Param("username") String username);
 }

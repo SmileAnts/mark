@@ -5,16 +5,16 @@
 <mapper namespace="com.smile.operation.user.dao.UserDao">
 	<resultMap type="com.smile.operation.user.entity.User"
 		id="userMapper">
-		<id property="uid" column="uid" />
+		<id property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
 		<collection property="roles"
 			ofType="com.smile.auth.entity.Role">
-			<id property="rid" column="rid" />
+			<id property="id" column="id" />
 			<result property="roleName" column="rname" />
 			<collection property="permissions"
 				ofType="com.smile.auth.entity.Module">
-				<id property="mid" column="mid" />
+				<id property="id" column="id" />
 				<result property="mname" column="mname" />
 			</collection>
 		</collection>
@@ -27,8 +27,8 @@
 		#{user.password}
 	</select>
 	<!-- 通过名字查找用户 -->
-	<select id="findByUserName" parameterType="string"
-		resultMap="userMapper">
-		select * from user where username=#{username};
+	<select id="findByUserName" parameterType="java.lang.String"
+		resultMap="com.smile.operation.user.entity.User">
+		select id,username,password from user where username=#{username};
 	</select>
 </mapper>

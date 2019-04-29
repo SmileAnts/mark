@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="center">
-		<form class="layui-form" id="form" action="/login/index" method="post">
+		<form class="layui-form" id="form" action="/login/" method="post">
 			<label class="tipinfo">密码登录</label>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<p>
-				<input type="button" class="login" value="登录" onclick="login()" />
+				<input type="button" class="login" value="注册" onclick="login()" />
 			</p>
 			<span id="tip" style="display: none">账号或密码错误</span>
 		</form>
@@ -38,26 +38,4 @@
 		})
 	</script>
 </body>
-<script type="text/javascript">
-	function login() {
-		$.ajax({
-			type : "POST",
-			dataType : "json",
-			url : "/login/index",
-			data : $("#form").serialize(),
-			success : function(result) {
-				console.log(result)
-				if (!result) {
-					$("#tip").css("display", "");
-				} else {
-					$("#tip").css("display", "none");
-					location.href = "/"
-				}
-			},
-			error : function(result) {
-				console.log(result)
-			}
-		})
-	}
-</script>
 </html>
