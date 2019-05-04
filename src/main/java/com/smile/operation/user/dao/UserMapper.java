@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.smile.operation.user.entity.User;
 
 @Mapper
-public interface UserDao extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<User> {
 
 	public Long login(@Param("user") User user);
 

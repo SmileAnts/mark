@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smile.operation.user.dao.UserDao">
+<mapper namespace="com.smile.operation.user.dao.UserMapper">
 	<resultMap type="com.smile.operation.user.entity.User"
 		id="userMapper">
 		<id property="id" column="id" />
@@ -26,9 +26,10 @@
 		and password =
 		#{user.password}
 	</select>
-	<!-- 通过名字查找用户 -->
-	<select id="findByUserName" parameterType="java.lang.String"
-		resultMap="com.smile.operation.user.entity.User">
-		select id,username,password from user where username=#{username};
+
+	<!-- 根据用户名查询用户 -->
+	<select id="findByUserName" resultMap="userMapper">
+		select * from user where
+		username = #{username}
 	</select>
 </mapper>
