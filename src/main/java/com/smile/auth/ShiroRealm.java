@@ -19,7 +19,6 @@ import com.smile.auth.entity.Module;
 import com.smile.auth.entity.Role;
 import com.smile.operation.user.entity.User;
 import com.smile.operation.user.service.IUserService;
-import com.smile.util.Exceptions;
 
 public class ShiroRealm extends AuthorizingRealm {
 
@@ -58,9 +57,6 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken utoken = (UsernamePasswordToken) token;// 获取用户输入的token
 		String username = utoken.getUsername();
 		User user = IUserServiceImpl.findUserByUserName(username);
-		if (user == null) {
-			throw Exceptions.unchecked("用户不存在！");
-		}
 		return new SimpleAuthenticationInfo(user, user.getPassword(), this.getClass().getName()); // 检验密码
 	}
 

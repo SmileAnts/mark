@@ -27,8 +27,8 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	public Object register(User user) {
-		if (user.getUsername() == null || user.getPassword() == null) {
-			
+		if (checkUser(user.getUsername())) {
+			userService.insert(user);
 		}
 		return null;
 	}
@@ -38,8 +38,11 @@ public class UserController extends BaseController {
 	 * 
 	 * @return
 	 */
-	private Object checkUser() {
-
-		return null;
+	private Boolean checkUser(String username) {
+		User user = userService.findUserByUserName(username);
+		if (user == null) {
+			return true;
+		}
+		return false;
 	}
 }
