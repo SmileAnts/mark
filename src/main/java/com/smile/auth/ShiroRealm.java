@@ -30,8 +30,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// TODO Auto-generated method stub
-		User user = (User) principals.fromRealm(this.getClass().getName()).iterator().next(); // 获取session中的用户
+		User user = (User) principals.fromRealm(this.getClass().getName()).iterator().next();
 		List<String> permission = new ArrayList<>();
 		Set<Role> roles = user.getRoles();
 		if (roles.size() > 0) {
@@ -54,10 +53,13 @@ public class ShiroRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken utoken = (UsernamePasswordToken) token;// 获取用户输入的token
+		UsernamePasswordToken utoken = (UsernamePasswordToken) token;
 		String username = utoken.getUsername();
 		User user = IUserServiceImpl.findUserByUserName(username);
-		return new SimpleAuthenticationInfo(user, user.getPassword(), this.getClass().getName()); // 检验密码
+		if (user == null) {
+			return null;
+		}
+		return new SimpleAuthenticationInfo(user, user.getPassword(), this.getClass().getName());
 	}
 
 }

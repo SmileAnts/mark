@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 用于页面的跳转
  * 
- * @author smile
+ * @author 许永强
  *
  */
 @RequestMapping("/skip")

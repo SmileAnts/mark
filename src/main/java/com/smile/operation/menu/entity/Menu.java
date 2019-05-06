@@ -5,7 +5,7 @@ import com.smile.operation.common.BaseController;
 /**
  * 菜单
  * 
- * @author smile
+ * @author 许永强
  *
  */
 public class Menu extends BaseController {

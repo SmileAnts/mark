@@ -3,7 +3,7 @@ package com.smile.util;
 /**
  * 常量类
  * 
- * @author mac
+ * @author 许永强
  *
  */
 public class Constants {
