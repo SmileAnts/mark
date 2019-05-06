@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.smile.operation.common.BaseController;
 import com.smile.operation.user.entity.User;
 import com.smile.operation.user.service.IUserService;
+import com.smile.util.CodeMsg;
+import com.smile.util.Result;
 
 /**
  * 用户类 用户得一系列操作
@@ -28,9 +30,9 @@ public class UserController extends BaseController {
 	 */
 	public Object register(User user) {
 		if (checkUser(user.getUsername())) {
-			userService.insert(user);
+			return Result.success(userService.insert(user));
 		}
-		return null;
+		return Result.error(CodeMsg.FALSE);
 	}
 
 	/**

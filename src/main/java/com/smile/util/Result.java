@@ -17,43 +17,45 @@ public class Result<T> {
 		this.message = Constants.SUCCESS;
 		this.data = data;
 	}
-	
+
 	private Result(CodeMsg cm) {
-		if(cm == null){
+		if (cm == null) {
 			return;
 		}
 		this.code = cm.getRetCode();
 		this.message = cm.getMessage();
 	}
-	
+
 	/**
-	  *  成功
+	 * 成功
 	 */
 	public static <T> Result<T> success(T data) {
 		return new Result<T>(data);
 	}
-	
+
 	/**
-	  * 成功，不需要传入参数
+	 * 成功，不需要传入参数
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> Result<T> success(){
+	public static <T> Result<T> success() {
 		return (Result<T>) success("");
 	}
-	
+
 	/**
 	 * 失败时候的调用
-	 * @return
 	 */
-	public static <T> Result<T> error(CodeMsg cm){
+	public static <T> Result<T> error(CodeMsg cm) {
 		return new Result<T>(cm);
 	}
 
-	public static <T> Result<T> error(CodeMsg cm,String msg){
-		cm.setMessage(cm.getMessage()+"--"+msg);
+	/**
+	 * 自定义
+	 */
+	public static <T> Result<T> error(CodeMsg cm, String msg) {
+		cm.setMessage(msg);
 		return new Result<T>(cm);
 	}
-	
+
 	public int getCode() {
 		return code;
 	}
