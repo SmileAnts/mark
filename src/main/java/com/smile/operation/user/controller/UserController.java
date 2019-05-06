@@ -3,6 +3,7 @@ package com.smile.operation.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smile.operation.common.BaseController;
 import com.smile.operation.user.entity.User;
@@ -28,6 +29,8 @@ public class UserController extends BaseController {
 	 * 
 	 * @return
 	 */
+	@RequestMapping("/register")
+	@ResponseBody
 	public Object register(User user) {
 		if (checkUser(user.getUsername())) {
 			return Result.success(userService.insert(user));

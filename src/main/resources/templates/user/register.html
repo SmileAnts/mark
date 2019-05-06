@@ -27,15 +27,31 @@
 				</div>
 			</div>
 			<p>
-				<input type="button" class="login" value="注册" onclick="login()" />
+				<input type="button" class="login" value="注册" onclick="register()" />
 			</p>
-			<span id="tip" style="display: none">账号或密码错误</span>
 		</form>
 	</div>
 	<script type="text/javascript">
 		layui.use('form', function() {
 			var form = layui.form;
 		})
+		function register() {
+			$.ajax({
+				type : "GET",
+				dataType : "json",
+				url : "/user/register",
+				data : $("#form").serialize(),
+				success : function(result) {
+					console.log(123)
+					console.log(result)
+					
+				},
+				error : function(result) {
+					console.log("errot");
+					console.log(result)
+				}
+			})
+		}
 	</script>
 </body>
 </html>
