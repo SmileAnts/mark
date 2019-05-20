@@ -11,9 +11,9 @@ import com.smile.operation.common.BaseEntity;
 import com.smile.operation.user.entity.User;
 
 @Entity
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String roleName;
 	@ManyToMany
 	private List<User> users;

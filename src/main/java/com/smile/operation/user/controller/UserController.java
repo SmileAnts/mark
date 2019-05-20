@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 		if (checkUser(user.getUsername())) {
 			return Result.success(userService.insert(user));
 		}
-		return Result.error(CodeMsg.FALSE);
+		return Result.error(CodeMsg.USER_EXSIST);
 	}
 
 	/**

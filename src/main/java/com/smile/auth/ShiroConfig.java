@@ -2,6 +2,7 @@ package com.smile.auth;
 
 import java.util.LinkedHashMap;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -23,6 +24,7 @@ public class ShiroConfig {
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/login/*", "anon"); // 表示可以匿名访问
+		filterChainDefinitionMap.put("/user/*", "anon"); // 表示可以匿名访问
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/image/**", "anon");
 		filterChainDefinitionMap.put("/css/**", "anon");
@@ -34,6 +36,17 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/*.*", "authc");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
+	}
+
+	@Bean("hashedCredentialsMatcher")
+	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+		// 指定加密方式为MD5
+		credentialsMatcher.setHashAlgorithmName("MD5");
+		// 加密次数
+		credentialsMatcher.setHashIterations(1024);
+		credentialsMatcher.setStoredCredentialsHexEncoded(true);
+		return credentialsMatcher;
 	}
 
 	// 配置securityManager

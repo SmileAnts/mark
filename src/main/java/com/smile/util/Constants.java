@@ -14,9 +14,17 @@ public class Constants {
 	/**
 	 * 成功 状态
 	 */
-	public static final String SUCCESS = "success";
+	public static final String SUCCESS = "注册成功！";
 	/**
 	 * 成功状态码
 	 */
 	public static final int SUCCESS_CODE = 200;
+	/**
+	 * 成功状态 true
+	 */
+	public static final Boolean SUCCESS_STATUS = Boolean.TRUE;
+	/**
+	 * 失败状态 false
+	 */
+	public static final Boolean FALSE_STATUS = Boolean.FALSE;
 }

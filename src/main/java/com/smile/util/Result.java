@@ -10,11 +10,13 @@ package com.smile.util;
 public class Result<T> {
 	private int code;
 	private String message;
+	private Boolean status;
 	private T data;
 
 	private Result(T data) {
 		this.code = Constants.SUCCESS_CODE;
 		this.message = Constants.SUCCESS;
+		this.status = Constants.SUCCESS_STATUS;
 		this.data = data;
 	}
 
@@ -24,6 +26,7 @@ public class Result<T> {
 		}
 		this.code = cm.getRetCode();
 		this.message = cm.getMessage();
+		this.status = cm.getStatus();
 	}
 
 	/**
@@ -78,6 +81,14 @@ public class Result<T> {
 
 	public void setData(T data) {
 		this.data = data;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 }

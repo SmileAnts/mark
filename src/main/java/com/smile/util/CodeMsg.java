@@ -9,16 +9,19 @@ package com.smile.util;
 public class CodeMsg {
 	private int retCode;
 	private String message;
+	private Boolean status;
 
-	public static CodeMsg SUCCESS = new CodeMsg(0, "success");
-	public static CodeMsg SERVER_EXCEPTION = new CodeMsg(500100, "服务端异常");
-	public static CodeMsg PARAMETER_ISNULL = new CodeMsg(500101, "输入参数为空");
-	public static CodeMsg USER_NOT_EXSIST = new CodeMsg(500102, "用户不存在");
-	public static CodeMsg FALSE = new CodeMsg(404, "操作失败");
+	public static CodeMsg SUCCESS = new CodeMsg(0, "success", Constants.SUCCESS_STATUS);
+	public static CodeMsg SERVER_EXCEPTION = new CodeMsg(500100, "服务端异常", Constants.FALSE_STATUS);
+	public static CodeMsg PARAMETER_ISNULL = new CodeMsg(500101, "输入参数为空", Constants.FALSE_STATUS);
+	public static CodeMsg USER_NOT_EXSIST = new CodeMsg(500102, "用户不存在", Constants.FALSE_STATUS);
+	public static CodeMsg USER_EXSIST = new CodeMsg(500103, "用户已存在", Constants.FALSE_STATUS);
+	public static CodeMsg FALSE = new CodeMsg(404, "操作失败", Constants.FALSE_STATUS);
 
-	private CodeMsg(int retCode, String message) {
-		this.retCode = retCode;
-		this.message = message;
+	public CodeMsg(int i, String string, boolean b) {
+		this.retCode = i;
+		this.message = string;
+		this.status = b;
 	}
 
 	public int getRetCode() {
@@ -31,6 +34,14 @@ public class CodeMsg {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 }

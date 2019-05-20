@@ -32,23 +32,18 @@
 		</form>
 	</div>
 	<script type="text/javascript">
-		layui.use('form', function() {
-			var form = layui.form;
-		})
 		function register() {
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				dataType : "json",
 				url : "/user/register",
 				data : $("#form").serialize(),
 				success : function(result) {
-					console.log(123)
-					console.log(result)
-					
-				},
-				error : function(result) {
-					console.log("errot");
-					console.log(result)
+					if (result.status) {
+						layer.msg(result.message);
+					} else {
+						layer.msg(result.message);
+					}
 				}
 			})
 		}

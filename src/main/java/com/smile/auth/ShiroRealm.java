@@ -13,6 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smile.auth.entity.Module;
@@ -23,7 +24,7 @@ import com.smile.operation.user.service.IUserService;
 public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
-	private IUserService IUserServiceImpl;
+	private IUserService userService;
 
 	/**
 	 * 授权
@@ -53,13 +54,20 @@ public class ShiroRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken utoken = (UsernamePasswordToken) token;
-		String username = utoken.getUsername();
-		User user = IUserServiceImpl.findUserByUserName(username);
-		if (user == null) {
-			return null;
-		}
-		return new SimpleAuthenticationInfo(user, user.getPassword(), this.getClass().getName());
+		// token携带了用户信息
+		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+		// 获取前端输入的用户名
+		String userName = usernamePasswordToken.getUsername();
+		// 根据用户名查询数据库中对应的记录
+		User user = userService.findUserByUserName(userName);
+		// 当前realm对象的name
+		String realmName = getName();
+		// 盐值
+		ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUsername());
+		// 封装用户信息，构建AuthenticationInfo对象并返回
+		AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(), credentialsSalt,
+				realmName);
+		return authcInfo;
 	}
 
 }
