@@ -1,5 +1,5 @@
 package com.smile.operation.common;
 
-public class CommonService {
-	
+public interface CommonService {
+	public <T> void saveOrUpdate(T entity);
 }
