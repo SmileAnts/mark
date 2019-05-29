@@ -6,8 +6,27 @@ package com.smile.util;
  * @author 许永强
  *
  */
-public class Exceptions {
+public class Exceptions extends Exception {
+	private String message;
+
+	public Exceptions(String ErrorMessagr) {
+		this.setMessage(ErrorMessagr);
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public static RuntimeException unchecked(String msg) {
 		return new RuntimeException(msg);
 	}
+
+	public Exceptions() {
+		super();
+	}
+
 }

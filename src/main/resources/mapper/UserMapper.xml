@@ -3,25 +3,19 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smile.operation.user.dao.UserMapper">
-	<resultMap type="com.smile.operation.user.entity.User"
+	<resultMap type="com.smile.operation.user.entity.Users"
 		id="userMapper">
 		<id property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
-		<collection property="roles"
-			ofType="com.smile.auth.entity.Role">
-			<id property="id" column="id" />
-			<result property="roleName" column="rname" />
-			<collection property="permissions"
-				ofType="com.smile.auth.entity.Module">
-				<id property="id" column="id" />
-				<result property="mname" column="mname" />
-			</collection>
-		</collection>
+		<result property="salt" column="salt" />
+		<result property="isLocked" column="isLocked" />
+		<result property="lockTime" column="lockTime" />
+		<result property="registTime" column="registTime" />
 	</resultMap>
 	<!-- 登录 -->
 	<select id="login" resultType="java.lang.Long">
-		select id from user where username
+		select id from users where username
 		= #{user.username}
 		and password =
 		#{user.password}
@@ -29,7 +23,7 @@
 
 	<!-- 根据用户名查询用户 -->
 	<select id="findByUserName" resultMap="userMapper">
-		select * from user where
+		select * from users where
 		username = #{username}
 	</select>
 </mapper>

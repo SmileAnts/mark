@@ -19,23 +19,25 @@
 					<input type="text" name="username" placeholder="用户名"
 						autocomplete="off" class="layui-input">
 				</div>
-				<div class="layui-col-md2 layui-input-block" style="text-align: center; align-content: center;padding-top:6px">
+				<div class="layui-col-md2 layui-input-block"
+					style="text-align: center; align-content: center; padding-top: 6px">
 					<a href="/login/register">注册用户</a>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block layui-col-md8">
-					<input style="float: left" type="password" name="password" placeholder="请输入密码"
-						autocomplete="off" class="layui-input">
+					<input style="float: left" type="password" name="password"
+						placeholder="请输入密码" autocomplete="off" class="layui-input">
 				</div>
-				<div class="layui-col-md2 layui-input-block" style="text-align: center; align-content: center;padding-top:6px">
+				<div class="layui-col-md2 layui-input-block"
+					style="text-align: center; align-content: center; padding-top: 6px">
 					<span><a href="www.baidu.com">忘记密码</a></span>
 				</div>
 			</div>
 			<p>
 				<input type="button" class="login" value="登录" onclick="login()" />
 			</p>
-			<span id="tip" style="display: none">账号或密码错误</span>
+			<span id="tip" style="display: none"></span>
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -52,12 +54,12 @@
 			url : "/login/index",
 			data : $("#form").serialize(),
 			success : function(result) {
-				console.log(result)
-				if (!result) {
-					$("#tip").css("display", "");
-				} else {
+				if (result.status) {
 					$("#tip").css("display", "none");
-					location.href = "/"
+					location.href = "/";
+				} else {
+					$("#tip").html(result.message);
+					$("#tip").css("display", "");
 				}
 			},
 			error : function(result) {

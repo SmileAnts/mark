@@ -3,12 +3,12 @@ package com.smile.operation.user.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.smile.operation.user.entity.User;
+import com.smile.operation.user.entity.Users;
 
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<Users> {
 
-	public Long login(User user);
+	public Long login(Users user);
 
-	public User findByUserName(String username);
+	public Users findByUserName(String username);
 }

@@ -44,7 +44,7 @@ public class ShiroConfig {
 		// 指定加密方式为MD5
 		credentialsMatcher.setHashAlgorithmName("MD5");
 		// 加密次数
-		credentialsMatcher.setHashIterations(1024);
+		credentialsMatcher.setHashIterations(3);
 		credentialsMatcher.setStoredCredentialsHexEncoded(true);
 		return credentialsMatcher;
 	}
@@ -60,9 +60,9 @@ public class ShiroConfig {
 
 	// 配置自定义的权限登录器
 	@Bean(name = "shiroRealm")
-	public ShiroRealm shiroRealm(@Qualifier("matcher") CredentialsMatcher matcher) {
+	public ShiroRealm shiroRealm() {
 		ShiroRealm shiroRealm = new ShiroRealm();
-		shiroRealm.setCredentialsMatcher(matcher);
+		shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 		return shiroRealm;
 	}
 

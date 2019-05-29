@@ -1,16 +1,16 @@
 package com.smile.operation.user.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.smile.operation.user.entity.User;
+import com.smile.operation.user.entity.Users;
 
-public interface IUserService extends IService<User> {
+public interface IUserService extends IService<Users> {
 	/**
 	 * 用户登录
 	 * 
 	 * @param user 用户实体
 	 * @return
 	 */
-	public Long login(User user);
+	public Long login(Users user);
 
 	/**
 	 * 根据用户名判断用户否存在
@@ -18,5 +18,5 @@ public interface IUserService extends IService<User> {
 	 * @param username 用户名
 	 * @return
 	 */
-	public User findUserByUserName(String username);
+	public Users findUserByUserName(String username);
 }
