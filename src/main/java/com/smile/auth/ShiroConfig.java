@@ -23,6 +23,7 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setLoginUrl("/login/login");
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		filterChainDefinitionMap.put("/login/goIndex", "authc"); // 表示可以匿名访问
 		filterChainDefinitionMap.put("/login/*", "anon"); // 表示可以匿名访问
 		filterChainDefinitionMap.put("/user/*", "anon"); // 表示可以匿名访问
 		filterChainDefinitionMap.put("/js/**", "anon");
@@ -51,18 +52,17 @@ public class ShiroConfig {
 
 	// 配置securityManager
 	@Bean(name = "securityManager")
-	public SecurityManager securityManager(@Qualifier("shiroRealm") ShiroRealm shiroRealm) {
-		System.err.println("--------------shiro已经加载----------------");
+	public SecurityManager securityManager(@Qualifier("myshiroRealm") ShiroRealm shiroRealm) {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(shiroRealm);
 		return manager;
 	}
 
 	// 配置自定义的权限登录器
-	@Bean(name = "shiroRealm")
-	public ShiroRealm shiroRealm() {
+	@Bean(name = "myshiroRealm")
+	public ShiroRealm shiroRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher matcher) {
 		ShiroRealm shiroRealm = new ShiroRealm();
-		shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		shiroRealm.setCredentialsMatcher(matcher);
 		return shiroRealm;
 	}
 

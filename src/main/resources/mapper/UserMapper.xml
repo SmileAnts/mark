@@ -9,13 +9,14 @@
 		<result property="username" column="username" />
 		<result property="password" column="password" />
 		<result property="salt" column="salt" />
-		<result property="isLocked" column="isLocked" />
-		<result property="lockTime" column="lockTime" />
-		<result property="registTime" column="registTime" />
+		<result property="locked" column="is_locked" />
+		<result property="lockTime" column="lock_time" />
+		<result property="registTime" column="regist_time" />
 	</resultMap>
 	<!-- 登录 -->
 	<select id="login" resultType="java.lang.Long">
-		select id from users where username
+		select id from users where
+		username
 		= #{user.username}
 		and password =
 		#{user.password}

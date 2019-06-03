@@ -1,7 +1,7 @@
 package com.smile.util;
 
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 
 import com.smile.operation.user.entity.Users;
 
@@ -20,9 +20,9 @@ public class Md5Util {
 	 * md5加盐加密
 	 */
 	private static Users md5(Users user) {
-		String random = new SecureRandomNumberGenerator().nextBytes().toHex();
-		user.setPassword(new Md5Hash(user.getPassword(), random, 3).toString());
-		user.setSalt(random);
+		ByteSource salt = ByteSource.Util.bytes(user.getUsername());
+		String newPs = new SimpleHash("MD5", user.getPassword(), salt, 3).toHex();
+		user.setPassword(newPs);
 		return user;
 	}
 }

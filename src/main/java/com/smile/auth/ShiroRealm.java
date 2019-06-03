@@ -49,10 +49,10 @@ public class ShiroRealm extends AuthorizingRealm {
 		// 当前realm对象的name
 		String realmName = getName();
 		// 盐值
-		ByteSource credentialsSalt = ByteSource.Util.bytes(user.getSalt());
+		ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUsername());
 		// 封装用户信息，构建AuthenticationInfo对象并返回
-		AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(usernamePasswordToken,
-				usernamePasswordToken.getPassword(), credentialsSalt, realmName);
+		AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(), credentialsSalt,
+				realmName);
 		return authcInfo;
 	}
 

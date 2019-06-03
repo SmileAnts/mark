@@ -27,4 +27,8 @@ public class Constants {
 	 * 失败状态 false
 	 */
 	public static final Boolean FALSE_STATUS = Boolean.FALSE;
+	/**
+	 * 一级菜单标号
+	 */
+	public static final Integer MENU_GOLD = 0;
 }

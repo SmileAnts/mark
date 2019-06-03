@@ -8,8 +8,28 @@ CREATE TABLE users (
   is_locked tinyint(2) DEFAULT '0',
   lock_time datetime DEFAULT NULL,
   id bigint(20) NOT NULL,
-  salt varchar(50) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create index index_user_name on users(username);
+insert into users(id, username, password, regist_time) values(1, 'admin', '9aa75c4d70930277f59d117ce19188b0', NOW());
+
+drop table if exists menu;
+CREATE TABLE menu (
+  name varchar(50) NOT NULL,
+  parent_id int NOT NULL,
+  create_time datetime NOT NULL,
+  url varchar(50) DEFAULT 'javascript:;',
+  sort int NOT NULL,
+  id bigint NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create index index_menu_name on menu(name);
+insert into menu(id, name, parent_id, create_time, sort) values(2, '系统设置', 0, NOW(), 3);
+insert into menu(id, name, parent_id, create_time, sort) values(3, '个人中心', 0, NOW(), 1);
+insert into menu(id, name, parent_id, create_time, sort) values(4, '权限管理', 0, NOW(), 2);
+insert into menu(id, name, parent_id, create_time, sort) values(5, '用户管理', 0, NOW(), 0);
+insert into menu(id, name, parent_id, create_time, url, sort) values(6, '菜单管理', 2, NOW(), '/menu/index', 0);
+
+

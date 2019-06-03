@@ -3,16 +3,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/smile
+    url: jdbc:mysql://localhost:3306/smile?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 1800000
-    validationQuery: SELECT 1 FROM DUAL
   flyway:
     enabled: true
     clean-disabled: true
@@ -31,6 +25,8 @@ spring:
     jedis.pool.max-idle: 8
     jedis.pool.min-idle: 0
     timeout: 0
+  jpa:
+    show-sql: true
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
   type-aliases-package: com.smile.operation.**

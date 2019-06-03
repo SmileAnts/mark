@@ -2,10 +2,10 @@ package com.smile.operation.user.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.smile.operation.common.BaseEntity;
 
 /**
@@ -20,9 +20,11 @@ public class Users extends BaseEntity {
 
 	private String username;
 	private String password;
-	private String salt;// 盐值
+	@TableField(value = "regist_time")
 	private Date registTime;
+	@TableField(value = "is_locked")
 	private Boolean locked;
+	@TableField(value = "lock_time")
 	private Date lockTime;
 
 	public String getUsername() {
@@ -41,15 +43,6 @@ public class Users extends BaseEntity {
 		this.password = password;
 	}
 
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	@Column(name = "registtime")
 	public Date getRegistTime() {
 		return registTime;
 	}

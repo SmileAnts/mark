@@ -15,6 +15,7 @@
 <body>
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
+			<div class="layui-logo">后台管理系统</div>
 			<ul class="layui-nav layui-layout-left">
 				<li class="layui-nav-item layadmin-flexible"><a
 					href="javascript:;" title="侧边伸缩"> <i
@@ -23,7 +24,8 @@
 			</ul>
 			<ul class="layui-nav layui-layout-right">
 				<li class="layui-nav-item"><a href="javascript:;"> <img
-						src="http://t.cn/RCzsdCq" class="layui-nav-img"> <span th:text="#{user.username}"></span>
+						src="http://t.cn/RCzsdCq" class="layui-nav-img"> <span
+						th:text="${user.username}"></span>
 				</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -41,16 +43,15 @@
 
 		<div class="layui-side layui-bg-black">
 			<div class="layui-side-scroll">
-				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 				<ul class="layui-nav layui-nav-tree">
-					<li class="layui-nav-item layui-nav-itemed"><a class=""
-						href="javascript:;">所有商品</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a lay-href="/skip/myinfo">个人中心</a>
-							</dd>
-							<dd>
-								<a lay-href="/skip/mydynic">个人动态</a>
+					<li class="layui-nav-item layui-nav-itemed"
+						th:each="menu : ${menus}"><a class=""
+						th:href="@{${menu.url} }" th:text="${menu.name}"></a>
+						<dl class="layui-nav-child"
+							th:if="${not #lists.isEmpty(menu.list)}">
+							<dd class="layui-this" th:each="m : ${menu.list}">
+								<a th:text="${m.name}"
+									th:lay-href="${m.url}"></a>
 							</dd>
 						</dl></li>
 				</ul>
@@ -61,29 +62,30 @@
 			<!-- 内容主体区域 -->
 			<div style="padding: 15px;">
 				<div class="layadmin-tabsbody-item layui-show">
-					<iframe frameborder="0" 
-						style="width: 98%; height: 100%;position:absolute" 
+					<iframe frameborder="0"
+						style="width: 98%; height: 100%; position: absolute"
 						marginheight="0" marginwidth="0"></iframe>
 				</div>
 			</div>
 		</div>
 
-		<div class="layui-footer">
-			<!-- 底部固定区域 -->
-
-		</div>
 	</div>
 	<script type="text/javascript" src="/js/layui/layui.all.js"></script>
-	<script>
-		//JavaScript代码区域
+	<script th:inline="javascript">
 		layui.use('element', function() {
 			var element = layui.element;
-
+	
 		});
 		$("a").click(function() {
 			var url = this.getAttribute("lay-href");
-			$("iframe").attr("src", url)
+			$("iframe").attr("src", url);
 		})
-	</script>
+		
+		
+        $(function(){
+			var single = [[${menus}]];
+			console.log(single);
+		})
+    </script>
 </body>
 </html>

@@ -37,7 +37,6 @@
 			<p>
 				<input type="button" class="login" value="登录" onclick="login()" />
 			</p>
-			<span id="tip" style="display: none"></span>
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -55,11 +54,9 @@
 			data : $("#form").serialize(),
 			success : function(result) {
 				if (result.status) {
-					$("#tip").css("display", "none");
-					location.href = "/";
+					location.href = "/login/goIndex";
 				} else {
-					$("#tip").html(result.message);
-					$("#tip").css("display", "");
+					layer.msg(result.message);
 				}
 			},
 			error : function(result) {
