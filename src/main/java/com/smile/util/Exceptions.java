@@ -7,6 +7,7 @@ package com.smile.util;
  *
  */
 public class Exceptions extends Exception {
+	private static final long serialVersionUID = -8956392800055458558L;
 	private String message;
 
 	public Exceptions(String ErrorMessagr) {

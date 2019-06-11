@@ -14,7 +14,7 @@ import com.smile.operation.common.BaseEntity;
  */
 @TableName(value = "menu")
 public class Menu extends BaseEntity {
-
+	private static final long serialVersionUID = 2948894578410132924L;
 	private String name;
 	@TableField(value = "parent_id")
 	private Integer parentId;
