@@ -53,10 +53,10 @@
 			url : "/login/index",
 			data : $("#form").serialize(),
 			success : function(result) {
-				if (result.status) {
+				if (result.code == 200) {
 					location.href = "/login/goIndex";
 				} else {
-					layer.msg(result.message);
+					layer.msg(result.msg);
 				}
 			},
 			error : function(result) {

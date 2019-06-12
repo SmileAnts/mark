@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>菜单管理</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/layui.css}">
+
+</head>
+<body>
+	<table id="menu" lay-filter="test"></table>
+	<script type="text/html" id="toolbarDemo">
+ 	 <div class="layui-btn-container">
+  	  	<button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+  	  	<button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+  	  	<button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+ 	 </div>
+	</script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/layui/layui.all.js}"></script>
+	<script type="text/javascript" th:src="@{/js/myjs/menu.js}"></script>
+</body>
+
+</html>
