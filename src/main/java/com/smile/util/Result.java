@@ -8,15 +8,22 @@ package com.smile.util;
  * @param <T>
  */
 public class Result<T> {
+
 	private int code;
-	private String message;
-	private Boolean status;
+	private String msg;
+	private int count;
 	private T data;
+
+	private Result(T data, int size) {
+		this.code = Constants.SUCCESS_CODE;
+		this.msg = Constants.SUCCESS;
+		this.data = data;
+		this.count = size;
+	}
 
 	private Result(T data) {
 		this.code = Constants.SUCCESS_CODE;
-		this.message = Constants.SUCCESS;
-		this.status = Constants.SUCCESS_STATUS;
+		this.msg = Constants.SUCCESS;
 		this.data = data;
 	}
 
@@ -25,13 +32,20 @@ public class Result<T> {
 			return;
 		}
 		this.code = cm.getRetCode();
-		this.message = cm.getMessage();
-		this.status = cm.getStatus();
+		this.msg = cm.getMessage();
 	}
 
 	/**
-	 * 成功
+	 * 返回带长度的成功类
+	 * 
+	 * @param data 返回数据
+	 * @param size 数据长度
+	 * @return
 	 */
+	public static <T> Result<T> success(T data, int size) {
+		return new Result<T>(data, size);
+	}
+
 	public static <T> Result<T> success(T data) {
 		return new Result<T>(data);
 	}
@@ -41,7 +55,7 @@ public class Result<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Result<T> success() {
-		return (Result<T>) success("");
+		return (Result<T>) success("", 0);
 	}
 
 	/**
@@ -67,12 +81,20 @@ public class Result<T> {
 		this.code = code;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public T getData() {
@@ -81,14 +103,6 @@ public class Result<T> {
 
 	public void setData(T data) {
 		this.data = data;
-	}
-
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
 	}
 
 }
