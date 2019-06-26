@@ -23,7 +23,9 @@ public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements I
 
 	@Override
 	public List<Menu> menus(Integer parentId) {
-		return menuMapper.menus(parentId);
+		List<Menu> menus = menuMapper.menus(parentId);
+		this.childMenu(menus);
+		return menus;
 	}
 
 	/**
@@ -34,7 +36,7 @@ public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements I
 			menus.forEach(menu -> {
 				List<Menu> childMenus = this.menus(Integer.valueOf(menu.getId().toString()));
 				childMenus = this.childMenu(childMenus);
-				menu.setList(childMenus);
+				menu.setChildren(childMenus);
 			});
 		}
 		return menus;

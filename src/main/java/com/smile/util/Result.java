@@ -27,6 +27,12 @@ public class Result<T> {
 		this.data = data;
 	}
 
+	private Result(T data, String msg, int code) {
+		this.data = data;
+		this.msg = msg;
+		this.code = code;
+	}
+
 	private Result(CodeMsg cm) {
 		if (cm == null) {
 			return;
@@ -50,12 +56,33 @@ public class Result<T> {
 		return new Result<T>(data);
 	}
 
+	public static <T> Result<T> success(T data, String msg, int code) {
+		return new Result<T>(data, msg, code);
+	}
+
 	/**
 	 * 成功，不需要传入参数
 	 */
 	@SuppressWarnings("unchecked")
+	public static <T> Result<T> success(String message) {
+		return (Result<T>) success(message, 0);
+	}
+
+	@SuppressWarnings("unchecked")
 	public static <T> Result<T> success() {
-		return (Result<T>) success("", 0);
+		return (Result<T>) success(Constants.SUCCESS, Constants.SUCCESS_CODE);
+	}
+
+	/**
+	 * 返回封装 返回实体， 信息， 状态码
+	 * 
+	 * @param data
+	 * @param msg
+	 * @param code
+	 * @return
+	 */
+	public static <T> Result<T> result(T data, String msg, int code) {
+		return new Result<T>(data, msg, code);
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package com.smile.operation.user.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.smile.operation.user.service.IUserService;
 import com.smile.util.CodeMsg;
 import com.smile.util.Md5Util;
 import com.smile.util.Result;
+import com.smile.util.WrapperUtil;
 
 /**
  * 用户类 用户得一系列操作
@@ -58,5 +61,18 @@ public class UserController extends BaseController {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 查询所有用户
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/list")
+	@ResponseBody
+	public List<Users> list() {
+		List<Users> users = new ArrayList<>();
+		userService.selectList(WrapperUtil.selectList(new Users()));
+		return users;
 	}
 }

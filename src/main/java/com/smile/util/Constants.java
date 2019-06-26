@@ -14,7 +14,7 @@ public class Constants {
 	/**
 	 * 成功 状态
 	 */
-	public static final String SUCCESS = "注册成功！";
+	public static final String SUCCESS = "成功！";
 	/**
 	 * 成功状态码
 	 */

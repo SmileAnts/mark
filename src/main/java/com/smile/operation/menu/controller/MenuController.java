@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.smile.operation.menu.entity.Menu;
 import com.smile.operation.menu.service.IMenuService;
+import com.smile.util.Constants;
 import com.smile.util.Result;
-import com.smile.util.WrapperUtil;
 
 /**
  * 菜单管理
@@ -37,11 +37,10 @@ public class MenuController {
 	/**
 	 * 查询所有菜单
 	 */
-	@RequestMapping("/selectAll")
+	@RequestMapping("/query")
 	@ResponseBody
-	public Object selectAll(Menu menu, HttpServletRequest request, Page<Menu> page) {
-		// page = iMenuServiceImpl.selectPage(page, WrapperUtil.selectList(menu));
-		List<Menu> menus = iMenuServiceImpl.selectList(WrapperUtil.selectList(menu));
-		return Result.success(menus, menus.size());
+	public Result<List<Menu>> selectAll(Menu menu, HttpServletRequest request, Page<Menu> page) {
+		List<Menu> menus = iMenuServiceImpl.menus(Constants.MENU_GOLD);
+		return Result.result(menus, Constants.SUCCESS, Constants.SUCCESS_CODE);
 	}
 }

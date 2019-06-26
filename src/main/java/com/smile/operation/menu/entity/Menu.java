@@ -23,7 +23,7 @@ public class Menu extends BaseEntity {
 	private String url;
 	private Integer sort;
 	@TableField(exist = false)
-	private List<Menu> list;
+	private List<Menu> children;
 
 	public String getName() {
 		return name;
@@ -65,12 +65,12 @@ public class Menu extends BaseEntity {
 		this.sort = sort;
 	}
 
-	public List<Menu> getList() {
-		return list;
+	public List<Menu> getChildren() {
+		return children;
 	}
 
-	public void setList(List<Menu> list) {
-		this.list = list;
+	public void setChildren(List<Menu> children) {
+		this.children = children;
 	}
 
 }
