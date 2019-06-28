@@ -19,6 +19,8 @@ public class Constants {
 	 * 成功状态码
 	 */
 	public static final int SUCCESS_CODE = 200;
+	
+	public static final int TABLE_CODE = 0;
 	/**
 	 * 成功状态 true
 	 */

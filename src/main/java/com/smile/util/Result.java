@@ -14,8 +14,14 @@ public class Result<T> {
 	private int count;
 	private T data;
 
+	/**
+	 * layui 的返回格式
+	 * 
+	 * @param data
+	 * @param size
+	 */
 	private Result(T data, int size) {
-		this.code = Constants.SUCCESS_CODE;
+		this.code = Constants.TABLE_CODE;
 		this.msg = Constants.SUCCESS;
 		this.data = data;
 		this.count = size;
@@ -70,7 +76,7 @@ public class Result<T> {
 
 	@SuppressWarnings("unchecked")
 	public static <T> Result<T> success() {
-		return (Result<T>) success(Constants.SUCCESS, Constants.SUCCESS_CODE);
+		return (Result<T>) success(Constants.SUCCESS_CODE);
 	}
 
 	/**

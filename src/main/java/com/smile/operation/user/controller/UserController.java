@@ -1,12 +1,12 @@
 package com.smile.operation.user.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,10 +42,12 @@ public class UserController extends BaseController {
 		if (user == null || StringUtils.isEmpty(user.getPassword()) || StringUtils.isEmpty(user.getUsername())) {
 			return Result.error(new CodeMsg(500, "用户名或密码不能为空！", false));
 		}
-		user = Md5Util.password(user);
-		user.setRegistTime(new Date());
+		if (user.getId() == null) {
+			user = Md5Util.password(user);
+			user.setRegistTime(new Date());
+		}
 		if (checkUser(user.getUsername())) {
-			return Result.success(userService.insert(user));
+			return Result.success(userService.insertOrUpdate(user));
 		}
 		return Result.error(CodeMsg.USER_EXSIST);
 	}
@@ -70,9 +72,13 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<Users> list() {
-		List<Users> users = new ArrayList<>();
-		userService.selectList(WrapperUtil.selectList(new Users()));
-		return users;
+	public Result<List<Users>> list() {
+		List<Users> users = userService.selectList(WrapperUtil.selectList(new Users()));
+		return Result.success(users, users.size());
+	}
+
+	@RequestMapping("/index")
+	public String index(Model model) {
+		return "html/user.html";
 	}
 }

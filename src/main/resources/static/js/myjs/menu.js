@@ -10,8 +10,11 @@ layui.use('tree', function() {
 			  edit: ['update', 'del', 'add'],
 			  showCheckbox : true,
 			  id : 'menu',
-			  accordion : true,
-			  data : node
+			  accordion : false,
+			  data : node,
+			  operate : function (obj){
+				  console.log(obj)
+			  }
 		  });
 		  $('.layui-tree-btnGroup').css('visibility', 'hidden');
 		  $('.layui-tree-entry').bind('mouseover', function(){
