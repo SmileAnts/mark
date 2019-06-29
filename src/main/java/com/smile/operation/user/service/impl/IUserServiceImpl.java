@@ -1,6 +1,7 @@
 package com.smile.operation.user.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.smile.operation.common.CommonService;
@@ -24,6 +25,18 @@ public class IUserServiceImpl extends ServiceImpl<UserMapper, Users> implements 
 	@Override
 	public <T> void saveOrUpdate(T entity) {
 
+	}
+
+	@Override
+	@Transactional
+	public Boolean deleteIds(Long[] ids) {
+		for (Long id : ids) {
+			Boolean delete = this.deleteById(id);
+			if (!delete) {
+				return delete;
+			}
+		}
+		return Boolean.TRUE;
 	}
 
 }

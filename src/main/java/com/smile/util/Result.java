@@ -48,7 +48,7 @@ public class Result<T> {
 	}
 
 	/**
-	 * 返回带长度的成功类
+	 * 返回带长度的成功类 layui table的返回
 	 * 
 	 * @param data 返回数据
 	 * @param size 数据长度
@@ -58,10 +58,24 @@ public class Result<T> {
 		return new Result<T>(data, size);
 	}
 
+	/**
+	 * 成功返回，成功为200
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public static <T> Result<T> success(T data) {
 		return new Result<T>(data);
 	}
 
+	/**
+	 * 自定义状态码和返回信息
+	 * 
+	 * @param data 返回数据
+	 * @param msg  返回信息
+	 * @param code 返回状态码
+	 * @return
+	 */
 	public static <T> Result<T> success(T data, String msg, int code) {
 		return new Result<T>(data, msg, code);
 	}

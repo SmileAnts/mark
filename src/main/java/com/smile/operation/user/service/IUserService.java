@@ -19,4 +19,12 @@ public interface IUserService extends IService<Users> {
 	 * @return
 	 */
 	public Users findUserByUserName(String username);
+
+	/**
+	 * 通过id 删除用户
+	 * 
+	 * @param ids 多删除
+	 * @return
+	 */
+	public Boolean deleteIds(Long[] ids);
 }

@@ -11,8 +11,8 @@
 		<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
 		<div class="layui-form-item" hidden="hidden">
 			<div class="layui-input-block">
-				<input type="text" name="id" placeholder="请输入"
-					autocomplete="off" class="layui-input">
+				<input type="text" name="id" placeholder="请输入" autocomplete="off"
+					class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -32,22 +32,22 @@
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
 			</div>
 		</div>
 	</form>
 
-	<table class="layui-table" id="user">
-		<!-- lay-data="{height:600, url:'/user/list', page:true, id:'user',toolbar: '#barDemo',defaultToolbar:[] }" -->
-		<!-- lay-filter="user" -->
-		<!-- <thead>
+	<table class="layui-table" id="user"
+		lay-data="{height:600, url:'/user/list', page:true, id:'user',toolbar: '#barDemo',defaultToolbar:[] }"
+		lay-filter="user">
+		<thead>
 			<tr>
 				<th lay-data="{ type: 'checkbox'}"></th>
 				<th lay-data="{field:'id', sort: true, width : 200}">ID</th>
 				<th lay-data="{field:'username'}">用户名</th>
 				<th lay-data="{field:'password', hide: true}">用户名</th>
 			</tr>
-		</thead> -->
+		</thead>
 	</table>
 	<script type="text/html" id="barDemo">
  	 <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>

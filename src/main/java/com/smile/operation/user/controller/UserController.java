@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smile.operation.common.BaseController;
@@ -30,6 +31,11 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
+
+	@RequestMapping("/index")
+	public String index(Model model) {
+		return "html/user.html";
+	}
 
 	/**
 	 * 注册新用户
@@ -77,8 +83,16 @@ public class UserController extends BaseController {
 		return Result.success(users, users.size());
 	}
 
-	@RequestMapping("/index")
-	public String index(Model model) {
-		return "html/user.html";
+	/**
+	 * 删除用户
+	 * 
+	 * @param id 用户id
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Result<Boolean> delete(@RequestParam("ids") Long[] ids) {
+		Boolean delete = userService.deleteIds(ids);
+		return Result.success(delete);
 	}
 }
