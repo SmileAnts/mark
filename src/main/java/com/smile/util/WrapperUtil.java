@@ -3,6 +3,12 @@ package com.smile.util;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.smile.operation.common.BaseEntity;
 
+/**
+ * sql 查询拼接类
+ * 
+ * @author 许永强
+ *
+ */
 public class WrapperUtil {
 
 	public static <T extends BaseEntity> EntityWrapper<T> selectList(T entity, String... params) {

@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.service.IService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.smile.operation.menu.dao.MenuMapper;
 import com.smile.operation.menu.entity.Menu;
 
 @Service
-public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IService<Menu> {
+public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> {
 
 	public List<Menu> menus(Integer parentId) {
 		List<Menu> menus = baseMapper.menus(parentId);

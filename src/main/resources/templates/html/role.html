@@ -6,9 +6,40 @@
 <link rel="stylesheet" type="text/css" href="/js/layui/css/layui.css">
 </head>
 <body>
+	<form class="layui-form" id="form" hidden="hidden"
+		style="margin-top: 10px; margin-right: 45px" lay-filter="userForm">
+		<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+		<div class="layui-form-item" hidden="hidden">
+			<div class="layui-input-block">
+				<input type="text" name="id" placeholder="请输入" autocomplete="off"
+					class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色名</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" placeholder="请输入"
+					autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item" id="password">
+			<label class="layui-form-label">描述</label>
+			<div class="layui-input-block">
+				<input type="text" name="descr" placeholder="请输入"
+					autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+			</div>
+		</div>
+	</form>
+
 	<table class="layui-table" id="role"
-		lay-data="{height:600, url:'/role/list', page:true, id:'user',toolbar: '#barDemo',defaultToolbar:[] }"
-		lay-filter="user">
+		lay-data="{height:600, url:'/role/list', page:true, id:'role',toolbar: '#barDemo',defaultToolbar:[] }"
+		lay-filter="role">
 		<thead>
 			<tr>
 				<th lay-data="{ type: 'checkbox'}"></th>

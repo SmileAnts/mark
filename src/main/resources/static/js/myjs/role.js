@@ -6,8 +6,6 @@ table.on('toolbar(role)', function(obj) {
 	switch (obj.event) {
 	case 'add':
 		var data = checkStatus.data;
-		$("#password").css("display", "")
-		$("#reset").css("display", "")
 		layer.open({
 			type : 1,
 			title : '新增用户',

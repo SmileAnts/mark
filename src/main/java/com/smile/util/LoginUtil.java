@@ -7,6 +7,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
+/**
+ * 登录类
+ * 
+ * @author 许永强
+ *
+ */
 public class LoginUtil {
 
 	public static Object login(String username, String password) {

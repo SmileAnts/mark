@@ -2,6 +2,7 @@ package com.smile.operation.role.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +40,15 @@ public class RoleController extends BaseController {
 	public Result<List<Role>> list() {
 		List<Role> roles = iRoleServiceImpl.selectList(WrapperUtil.selectList(new Role()));
 		return Result.success(roles, roles.size());
+	}
+
+	/**
+	 * 新增角色
+	 */
+	@RequestMapping("/add")
+	@ResponseBody
+	public void add(Role role) {
+		Validate.isTrue(role != null, "role is null");
+		Boolean result = iRoleServiceImpl.insertOrUpdate(role);
 	}
 }
