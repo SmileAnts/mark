@@ -1,29 +1,19 @@
-package com.smile.operation.menu.service.impl;
+package com.smile.operation.menu.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.service.IService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.smile.operation.common.CommonService;
 import com.smile.operation.menu.dao.MenuMapper;
 import com.smile.operation.menu.entity.Menu;
-import com.smile.operation.menu.service.IMenuService;
 
 @Service
-public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService, CommonService {
-	@Autowired
-	private MenuMapper menuMapper;
+public class IMenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IService<Menu> {
 
-	@Override
-	public <T> void saveOrUpdate(T entity) {
-
-	}
-
-	@Override
 	public List<Menu> menus(Integer parentId) {
-		List<Menu> menus = menuMapper.menus(parentId);
+		List<Menu> menus = baseMapper.menus(parentId);
 		this.childMenu(menus);
 		return menus;
 	}

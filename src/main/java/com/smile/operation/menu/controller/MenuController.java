@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.smile.operation.menu.entity.Menu;
-import com.smile.operation.menu.service.IMenuService;
+import com.smile.operation.menu.service.IMenuServiceImpl;
 import com.smile.util.Constants;
 import com.smile.util.Result;
 
@@ -26,7 +26,7 @@ import com.smile.util.Result;
 @RequestMapping("/menu")
 public class MenuController {
 	@Autowired
-	private IMenuService iMenuServiceImpl;
+	private IMenuServiceImpl iMenuServiceImpl;
 
 	@RequestMapping("/index")
 	public String index(Model model) {

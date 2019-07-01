@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smile.operation.common.BaseController;
 import com.smile.operation.user.entity.Users;
-import com.smile.operation.user.service.IUserService;
+import com.smile.operation.user.service.IUserServiceImpl;
 import com.smile.util.CodeMsg;
 import com.smile.util.Md5Util;
 import com.smile.util.Result;
@@ -30,7 +30,7 @@ import com.smile.util.WrapperUtil;
 public class UserController extends BaseController {
 
 	@Autowired
-	private IUserService userService;
+	private IUserServiceImpl userService;
 
 	@RequestMapping("/index")
 	public String index(Model model) {

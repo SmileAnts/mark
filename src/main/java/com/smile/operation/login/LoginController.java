@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smile.operation.menu.entity.Menu;
-import com.smile.operation.menu.service.IMenuService;
+import com.smile.operation.menu.service.IMenuServiceImpl;
 import com.smile.operation.user.entity.Users;
 import com.smile.util.Constants;
 import com.smile.util.LoginUtil;
@@ -22,7 +22,7 @@ import com.smile.util.LoginUtil;
 @RequestMapping("/login")
 public class LoginController {
 	@Autowired
-	private IMenuService iMenusSerivce;
+	private IMenuServiceImpl iMenusSerivce;
 
 	/**
 	 * 登录

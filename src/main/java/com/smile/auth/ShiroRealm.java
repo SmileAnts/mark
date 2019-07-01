@@ -14,12 +14,12 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smile.operation.user.entity.Users;
-import com.smile.operation.user.service.IUserService;
+import com.smile.operation.user.service.IUserServiceImpl;
 
 public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
-	private IUserService userService;
+	private IUserServiceImpl userService;
 
 	/**
 	 * 授权
