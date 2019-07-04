@@ -93,6 +93,11 @@ public class Result<T> {
 		return (Result<T>) success(Constants.SUCCESS_CODE);
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T> Result<T> error() {
+		return (Result<T>) success(Constants.FALSE_CODE);
+	}
+
 	/**
 	 * 返回封装 返回实体， 信息， 状态码
 	 * 
@@ -117,6 +122,16 @@ public class Result<T> {
 	 */
 	public static <T> Result<T> error(CodeMsg cm, String msg) {
 		cm.setMessage(msg);
+		return new Result<T>(cm);
+	}
+
+	/**
+	 * 自定义
+	 */
+	public static <T> Result<T> success(CodeMsg cm, String msg) {
+		cm.setMessage(msg);
+		cm.setStatus(Constants.SUCCESS_STATUS);
+		cm.setRetCode(Constants.SUCCESS_CODE);
 		return new Result<T>(cm);
 	}
 

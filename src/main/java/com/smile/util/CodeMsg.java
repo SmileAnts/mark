@@ -11,12 +11,12 @@ public class CodeMsg {
 	private String message;
 	private Boolean status;
 
-	public static CodeMsg SUCCESS = new CodeMsg(0, "success", Constants.SUCCESS_STATUS);
+	public static CodeMsg SUCCESS = new CodeMsg(Constants.SUCCESS_CODE, "success", Constants.SUCCESS_STATUS);
 	public static CodeMsg SERVER_EXCEPTION = new CodeMsg(500100, "服务端异常", Constants.FALSE_STATUS);
 	public static CodeMsg PARAMETER_ISNULL = new CodeMsg(500101, "输入参数为空", Constants.FALSE_STATUS);
 	public static CodeMsg USER_NOT_EXSIST = new CodeMsg(500102, "用户不存在", Constants.FALSE_STATUS);
 	public static CodeMsg USER_EXSIST = new CodeMsg(500103, "用户已存在", Constants.FALSE_STATUS);
-	public static CodeMsg FALSE = new CodeMsg(404, "操作失败", Constants.FALSE_STATUS);
+	public static CodeMsg FALSE = new CodeMsg(Constants.FALSE_CODE, "操作失败", Constants.FALSE_STATUS);
 
 	public CodeMsg(int i, String string, boolean b) {
 		this.retCode = i;
@@ -42,6 +42,10 @@ public class CodeMsg {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public void setRetCode(int retCode) {
+		this.retCode = retCode;
 	}
 
 }

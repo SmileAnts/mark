@@ -1,9 +1,9 @@
 package com.smile.operation.user.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +15,7 @@ import com.smile.operation.common.BaseController;
 import com.smile.operation.user.entity.Users;
 import com.smile.operation.user.service.IUserServiceImpl;
 import com.smile.util.CodeMsg;
+import com.smile.util.Converters;
 import com.smile.util.Md5Util;
 import com.smile.util.Result;
 import com.smile.util.WrapperUtil;
@@ -50,7 +51,7 @@ public class UserController extends BaseController {
 		}
 		if (user.getId() == null) {
 			user = Md5Util.password(user);
-			user.setRegistTime(new Date());
+			user.setRegistTime(Converters.nowTime());
 		}
 		if (checkUser(user.getUsername())) {
 			return Result.success(userService.insertOrUpdate(user));
@@ -92,6 +93,7 @@ public class UserController extends BaseController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Result<Boolean> delete(@RequestParam("ids") Long[] ids) {
+		Validate.notEmpty(ids, "参数ids 不能为空");
 		Boolean delete = userService.deleteIds(ids);
 		return Result.success(delete);
 	}

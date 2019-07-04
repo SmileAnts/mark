@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smile.operation.common.BaseController;
 import com.smile.operation.role.entity.Role;
 import com.smile.operation.role.service.IRoleServiceImpl;
+import com.smile.util.CodeMsg;
+import com.smile.util.Converters;
 import com.smile.util.Result;
 import com.smile.util.WrapperUtil;
 
@@ -44,11 +46,15 @@ public class RoleController extends BaseController {
 
 	/**
 	 * 新增角色
+	 * 
+	 * @return
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public void add(Role role) {
+	public Result<Object> add(Role role) {
 		Validate.isTrue(role != null, "role is null");
+		role.setCreateTime(Converters.nowTime());
 		Boolean result = iRoleServiceImpl.insertOrUpdate(role);
+		return result ? Result.success(CodeMsg.SUCCESS, "新增成功") : Result.error(CodeMsg.FALSE, "新增失败");
 	}
 }
