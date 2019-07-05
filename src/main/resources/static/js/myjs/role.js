@@ -28,7 +28,7 @@ table.on('toolbar(role)', function(obj) {
 				p.push(pa.id)
 			})
 			$.ajax({
-				url : '/user/delete',
+				url : '/role/delete',
 				data : {
 					ids : p + ''
 				},
@@ -63,5 +63,4 @@ function reload(status){
 
 // 监听行双击事件
 table.on('rowDouble(role)', function(obj){
-  console.log(obj)
 });

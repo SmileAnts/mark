@@ -6,6 +6,7 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smile.operation.common.BaseController;
@@ -56,5 +57,19 @@ public class RoleController extends BaseController {
 		role.setCreateTime(Converters.nowTime());
 		Boolean result = iRoleServiceImpl.insertOrUpdate(role);
 		return result ? Result.success(CodeMsg.SUCCESS, "新增成功") : Result.error(CodeMsg.FALSE, "新增失败");
+	}
+
+	/**
+	 * 删除用户
+	 * 
+	 * @param id 用户id
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Result<Boolean> delete(@RequestParam("ids") Long[] ids) {
+		Validate.notEmpty(ids, "参数ids 不能为空");
+		Boolean delete = iRoleServiceImpl.deleteIds(ids);
+		return Result.success(delete);
 	}
 }
