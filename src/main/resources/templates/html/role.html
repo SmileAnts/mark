@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <title>角色管理</title>
 <link rel="stylesheet" type="text/css" href="/js/layui/css/layui.css">
+<style type="text/css">
+.layui-tree-iconClick {
+	display: none
+}
+</style>
 </head>
 <body>
 	<form class="layui-form" id="form" hidden="hidden"
@@ -18,15 +23,15 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色名</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" placeholder="请输入"
-					autocomplete="off" class="layui-input" lay-verify="required">
+				<input type="text" name="name" placeholder="请输入" autocomplete="off"
+					class="layui-input" lay-verify="required">
 			</div>
 		</div>
 		<div class="layui-form-item" id="password">
 			<label class="layui-form-label">描述</label>
 			<div class="layui-input-block">
-				<input type="text" name="descr" placeholder="请输入"
-					autocomplete="off" class="layui-input" lay-verify="required">
+				<input type="text" name="descr" placeholder="请输入" autocomplete="off"
+					class="layui-input" lay-verify="required">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -36,28 +41,39 @@
 			</div>
 		</div>
 	</form>
-	
+
 	<!-- 角色 div -->
-	<div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
-	<table class="layui-table" id="role"
-		lay-data="{height:600, url:'/role/list', page:true, id:'role',toolbar: '#barDemo',defaultToolbar:[] }"
-		lay-filter="role">
-		<thead>
-			<tr>
-				<th lay-data="{ type: 'checkbox'}"></th>
-				<th lay-data="{field:'id', sort: true, width : 200}">ID</th>
-				<th lay-data="{field:'name'}">角色名</th>
-				<th lay-data="{field:'descr'}">用户描述</th>
-			</tr>
-		</thead>
-	</table>
+	<div id="block_role" class="layui-col-xs4 layui-col-sm7 layui-col-md12">
+		<table class="layui-table" id="role"
+			lay-data="{height:600, url:'/role/list', page:true, id:'role',toolbar: '#barDemo',defaultToolbar:[] }"
+			lay-filter="role">
+			<thead>
+				<tr>
+					<th lay-data="{ type: 'checkbox'}"></th>
+					<th lay-data="{field:'id', sort: true, width : 200}">ID</th>
+					<th lay-data="{field:'name'}">角色名</th>
+					<th lay-data="{field:'descr'}">用户描述</th>
+				</tr>
+			</thead>
+		</table>
 	</div>
-	
+
 	<!-- 菜单div -->
-	 <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
-	 	
-    </div>
+	<div id="block_menu" class="layui-col-xs4 layui-col-sm5 layui-col-md3"
+		style="display: none; margin-left: 20px; border: 1px solid #e6e6e6; margin-top: 10px;height: 600px">
+		<ul class="layui-nav"
+			style="background-color: #e6e6e6; position: relative; z-index: 890; width: 100%; min-height: 50px; line-height: 30px; padding: 10px 15px; border-width: 0 0 1px;">
+			<li><button class="layui-btn layui-btn-sm">保存</button></li>
+		</ul>
+		<table id="menu"
+			style="margin-top: 4px;margin: 0 3%" ></table>
+	</div>
 	<script type="text/html" id="barDemo">
+ 	 <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
+  	 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+ 	 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script type="text/html" id="barDemoMenu">
  	 <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
   	 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
  	 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -67,4 +83,5 @@
 <script type="text/javascript" src="/js/layui/layui.all.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/myjs/role.js"></script>
+<script type="text/javascript" src="/js/myjs/menu.js"></script>
 </html>
