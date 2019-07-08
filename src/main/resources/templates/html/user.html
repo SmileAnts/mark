@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <title>用户管理</title>
 <link rel="stylesheet" type="text/css" href="/js/layui/css/layui.css">
+<style>
+.layui-table-body {
+	overflow: hidden;
+}
+</style>
 </head>
 <body>
 	<form class="layui-form" id="form" hidden="hidden"
@@ -49,10 +54,29 @@
 			</tr>
 		</thead>
 	</table>
+
+	<!-- 角色 div -->
+	<div id="block_role" style="display: none; padding: 10px">
+		<table class="layui-table" id="role"
+			lay-data="{height:600, url:'/role/list', page:true, id:'role',toolbar: '#sureRole',defaultToolbar:[] }"
+			lay-filter="role">
+			<thead>
+				<tr>
+					<th lay-data="{ type: 'checkbox'}"></th>
+					<th lay-data="{field:'id', sort: true, width : 100}">ID</th>
+					<th lay-data="{field:'name', width: 200}">角色名</th>
+					<th lay-data="{field:'descr', width :300}">用户描述</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 	<script type="text/html" id="barDemo">
  	 <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
   	 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
  	 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script type="text/html" id="sureRole">
+		<a class="layui-btn layui-btn-xs" lay-event="add">保存</a>
 	</script>
 </body>
 <script type="text/javascript" src="/js/jquery.min.js"></script>

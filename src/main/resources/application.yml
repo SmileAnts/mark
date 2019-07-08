@@ -30,3 +30,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
   type-aliases-package: com.smile.operation.**
+
+#freemarker模板位置
+freemarker:
+  templateDirectory : /templates/ftl

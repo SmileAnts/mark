@@ -1,6 +1,7 @@
 var table = layui.table
 var form = layui.form
 var doubbleClick = true
+var tree = layui.tree
 // 头工具栏事件
 table.on('toolbar(role)', function(obj) {
 	var checkStatus = table.checkStatus(obj.config.id);
@@ -74,3 +75,8 @@ table.on('rowDouble(role)', function(obj){
 		doubbleClick = !doubbleClick
 	}
 });
+
+function save (){
+	var checkedData = tree.getChecked('menu'); // 获取选中节点的数据
+	console.log(checkedData)
+}

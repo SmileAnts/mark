@@ -83,4 +83,10 @@ function reload(status){
 // 监听行双击事件
 table.on('rowDouble(user)', function(obj){
   console.log(obj)
+  layer.open({
+		type : 1,
+		title : '添加角色',
+		content : $('#block_role'),
+		area : [ '600px' ]
+	});
 });
