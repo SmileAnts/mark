@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>角色管理</title>
+<link rel="stylesheet" type="text/css" href="/js/layui/css/layui.css">
+</head>
+<body>
+	<form class="layui-form" id="form" hidden="hidden"
+		style="margin-top: 10px; margin-right: 45px" lay-filter="userForm">
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户名</label>
+			<div class="layui-input-block">
+				<input type="text" name="username" placeholder="请输入"
+					autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+			</div>
+		</div>
+	</form>
+	<button class="layui-btn layui-btn-xs" onclick="freemarker()">新增</button>
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/layui/layui.all.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript">
+	var form = layui.form
+	function freemarker(content, fileName) {
+		layer.open({
+			type : 1,
+			title : '新增用户',
+			content : $('#form'),
+			area : [ '500px' ]
+		});
+	}
+	form.on('submit(*)', function(data) {
+		$.ajax({
+			url : '/module/create',
+			data : data.field,
+			success : function(result) {
+				console.log(result)
+			}
+		})
+	});
+</script>
+</html>

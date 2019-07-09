@@ -1,32 +1,34 @@
 package com.smile.common;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.springframework.stereotype.Component;
 
 import freemarker.template.Configuration;
-import freemarker.template.TemplateExceptionHandler;
+import freemarker.template.Template;
 
 @Component
-@Lazy
+@org.springframework.context.annotation.Configuration
 public class FreeMarkerService {
-	protected Configuration configuration;
 
-	@Value("${freemarker.templateDirectory}")
-	private String templateDirectory;
+	public void save(String name) throws Exception {
+		Configuration cfg = FreeMarkerUtil.init();
+		cfg.setDirectoryForTemplateLoading(new File(System.getProperty("user.dir")));
 
-	@PostConstruct
-	public void init() throws IOException {
-		configuration = new Configuration(Configuration.VERSION_2_3_27);
-		configuration.setDirectoryForTemplateLoading(new File(""));
-		configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-		configuration.setDefaultEncoding("UTF-8");
-		configuration.setLogTemplateExceptions(false);
-		configuration.setWrapUncheckedExceptions(true);
+		Map<String, String> root = new HashMap<>();
+		root.put("user", name);
+
+		Template temp = cfg.getTemplate("/src/main/resources/templates/ftl/html.ftl");
+		File file = new File(System.getProperty("user.dir") + "/html");
+		String indexPath = System.getProperty("user.dir") + "/html/smile.html";
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+		FileWriterWithEncoding out = new FileWriterWithEncoding(indexPath, "UTF-8");
+		temp.process(root, out);
+		out.close();
 	}
 }
