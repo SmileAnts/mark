@@ -1,5 +1,6 @@
 package com.smile.operation.menu.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -19,7 +20,7 @@ public class Menu extends BaseEntity {
 	@TableField(value = "parent_id")
 	private Integer parentId;
 	@TableField(value = "create_time")
-	private String createTime;
+	private Date createTime;
 	private String url;
 	private Integer sort;
 	@TableField(exist = false)
@@ -41,11 +42,11 @@ public class Menu extends BaseEntity {
 		this.parentId = parentId;
 	}
 
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 

@@ -41,6 +41,6 @@ public class MenuController {
 	@ResponseBody
 	public Result<List<Menu>> selectAll(Menu menu, HttpServletRequest request, Page<Menu> page) {
 		List<Menu> menus = iMenuServiceImpl.menus(Constants.MENU_GOLD);
-		return Result.result(menus, Constants.SUCCESS, Constants.SUCCESS_CODE);
+		return Result.success(menus, menus.size());
 	}
 }

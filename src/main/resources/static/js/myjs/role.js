@@ -65,15 +65,6 @@ function reload(status){
 
 // 监听行双击事件
 table.on('rowDouble(role)', function(obj){
-	if(doubbleClick){
-		$("#block_role").attr("class","layui-col-xs4 layui-col-sm7 layui-col-md8")
-		$("#block_menu").css("display" , '')
-		doubbleClick = !doubbleClick
-	} else {
-		$("#block_role").attr("class","layui-col-xs4 layui-col-sm7 layui-col-md12")
-		$("#block_menu").css("display" , 'none')
-		doubbleClick = !doubbleClick
-	}
 });
 
 function save (){

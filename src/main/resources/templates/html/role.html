@@ -42,7 +42,7 @@
 	</form>
 
 	<!-- 角色 div -->
-	<div id="block_role" class="layui-col-xs4 layui-col-sm7 layui-col-md12">
+	<div id="block_role" class="layui-col-xs4 layui-col-sm7 layui-col-md8">
 		<table class="layui-table" id="role"
 			lay-data="{height:600, url:'/role/list', page:true, id:'role',toolbar: '#barDemo',defaultToolbar:[] }"
 			lay-filter="role">
@@ -59,10 +59,18 @@
 
 	<!-- 菜单div -->
 	<div id="block_menu" class="layui-col-xs4 layui-col-sm5 layui-col-md3"
-		style="display: none; margin-left: 20px; border: 1px solid #e6e6e6; margin-top: 10px; height: 600px">
+		style="margin-left: 20px; border: 1px solid #e6e6e6; margin-top: 10px; height: 600px">
 		<ul class="layui-nav"
 			style="background-color: #e6e6e6; position: relative; z-index: 890; width: 100%; min-height: 50px; line-height: 30px; padding: 10px 15px; border-width: 0 0 1px;">
-			<li><button class="layui-btn layui-btn-sm" onclick="save()">保存</button></li>
+
+			<li><button class="layui-btn layui-btn-sm"
+					style="float: left; margin-right: 10px">新增</button></li>
+			<li><button class="layui-btn layui-btn-sm"
+					style="float: left; margin-right: 10px">编辑</button></li>
+			<li><button class="layui-btn layui-btn-sm"
+					style="float: left; margin-right: 10px">删除</button></li>
+			<li><button class="layui-btn layui-btn-sm" onclick="save()"
+					style="float: left; margin-right: 10px; display: none" id="save">保存</button></li>
 		</ul>
 		<table id="menu" style="margin-top: 4px; margin: 0 3%"></table>
 	</div>
