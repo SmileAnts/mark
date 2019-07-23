@@ -11,7 +11,11 @@ public class RedisClient {
 	@Autowired
 	private JedisPool jedisPool;
 
-	public Jedis getRedis() {
-		return jedisPool.getResource();
+	public Jedis getRedis() throws Exception {
+		try {
+			return jedisPool.getResource();
+		} catch (Exception e) {
+			throw new Exception("redis未启动");
+		}
 	}
 }

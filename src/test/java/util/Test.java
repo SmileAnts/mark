@@ -1,21 +1,33 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.Application;
+import com.smile.operation.redis.RedisClient;
+
+import redis.clients.jedis.Jedis;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 public class Test {
-	
-	public static void main(String[] args) {
-		List<Integer> sort = new ArrayList<>();
-		sort.add(10);
-		sort.add(1);
-		sort.add(20);
-		sort.add(5);
-		sort.add(8);
-		sort.add(8);
-		sort.add(19);
-		sort.add(100);
-		Collections.sort(sort, (x, y) -> x - y);
+
+	@Autowired
+	private RedisClient redisClient;
+
+	@org.junit.Test
+	public void MyTest() {
+		Jedis jedis;
+		try {
+			jedis = redisClient.getRedis();
+			jedis.set("id", "123");
+			String value = jedis.get("id");
+			System.out.println(value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
 }

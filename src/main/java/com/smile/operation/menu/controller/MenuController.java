@@ -33,7 +33,6 @@ public class MenuController {
 
 	@RequestMapping("/index")
 	public String index(Model model) {
-
 		return "menu/menu.html";
 	}
 
