@@ -37,5 +37,5 @@ public class Constants {
 	/**
 	 * 一级菜单标号
 	 */
-	public static final Integer MENU_GOLD = 0;
+	public static final Long MENU_GOLD = 0L;
 }

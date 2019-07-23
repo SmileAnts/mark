@@ -63,10 +63,6 @@ function reload(status){
 	}
 }
 
-// 监听行双击事件
-table.on('rowDouble(role)', function(obj){
-});
-
 function save (){
 	var checkedData = tree.getChecked('menu'); // 获取选中节点的数据
 	console.log(checkedData)

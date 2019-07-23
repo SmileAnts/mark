@@ -7,12 +7,19 @@ table.on('toolbar(menu)', function(obj) {
 	case 'add':
 		var data = checkStatus.data;
 		$("#reset").css("display", "")
-		layer.open({
+		form.val("userForm", {
+				"name" : '',
+				"id" : '',
+				"url" : '',
+				"sort" : ''
+			})
+		var index = layer.open({
 			type : 1,
 			title : '新增用户',
 			content : $('#form'),
 			area : [ '500px' ]
 		});
+		$("#index").val(index)
 		break;
 	case 'edit':
 		var data = checkStatus.data;
@@ -24,12 +31,13 @@ table.on('toolbar(menu)', function(obj) {
 				"sort" : data[0].sort
 			})
 			$("#reset").css("display", "none")
-			layer.open({
+			var index = layer.open({
 				type : 1,
 				title : '用户编辑',
 				content : $('#form'),
 				area : [ '500px' ]
 			});
+			$("#index").val(index)
 		} else {
 			layer.msg('请选中一条数据');
 		}
@@ -60,6 +68,99 @@ table.on('toolbar(menu)', function(obj) {
 	}
 	;
 });
+
+function reload(status){
+	console.log(status)
+	if(status){
+		table.reload('menu', {
+			url : '/menu/query'
+		})
+		table.reload('child', {
+			url : '/menu/parent?parentId=' + $("#parentId").val()
+		})
+	}
+}
+
+form.on('submit(*)', function(data, index) {
+	$.ajax({
+		url : '/menu/add',
+		data : data.field,
+		success : function(result) {
+			reload(result.code == 200)
+		}
+	})
+	layer.close($("#index").val());
+	return false;
+});
+table.on('toolbar(child)', function(obj) {
+	console.log(obj)
+	var checkStatus = table.checkStatus(obj.config.id);
+	switch (obj.event) {
+	case 'add':
+		var data = checkStatus.data;
+		$("#reset").css("display", "")
+		form.val("childForm", {
+				"name" : '',
+				"id" : '',
+				"url" : '',
+				"sort" : ''
+			})
+		var index = layer.open({
+			type : 1,
+			title : '新增用户',
+			content : $('#formChild'),
+			area : [ '500px' ]
+		});
+		$("#index").val(index)
+		break;
+	case 'edit':
+		var data = checkStatus.data;
+		if (data.length == 1) {
+			form.val("childForm", {
+				"name" : data[0].name,
+				"id" : data[0].id,
+				"url" : data[0].url,
+				"sort" : data[0].sort
+			})
+			$("#reset").css("display", "none")
+			var index = layer.open({
+				type : 1,
+				title : '用户编辑',
+				content : $('#formChild'),
+				area : [ '500px' ]
+			});
+			$("#index").val(index)
+		} else {
+			layer.msg('请选中一条数据');
+		}
+		break;
+	case 'del':
+		if (checkStatus.data.length == 0){
+			layer.msg('请选中一条数据');
+			return;
+		}
+		layer.confirm('删除菜单?',{btn: ['确定', '取消'], title: "提示"}, function(index){
+			var param = checkStatus.data
+			var p = []
+			param.forEach(pa => {
+				p.push(pa.id)
+			})
+			$.ajax({
+				url : '/menu/delete',
+				data : {
+					ids : p + ''
+				},
+				success : function(result) {
+					layer.close(index);
+					reload(result.code == 200)
+				}
+			})
+		});
+		break;
+	}
+	;
+});
+
 layui.use('tree', function() {
 	var tree = layui.tree;
 	var node = [];
@@ -120,29 +221,12 @@ table.on('rowDouble(menu)', function(obj){
 	      {field: 'sort', title: '排序', width:60}
 	    ]]
 	  });
-	
+	$("#parentId").val(obj.data.id);
+	$("#parentName").val(obj.data.name);
 	layer.open({
 		type : 1,
 		title : '子菜单',
 		content : $('#child_div'),
 		area : [ '555px' ]
 	});
-});
-
-function reload(status){
-	if(status){
-		table.reload('menu', {
-			url : '/menu/query'
-		})
-	}
-}
-
-form.on('submit(*)', function(data) {
-	$.ajax({
-		url : '/menu/add',
-		data : data.field,
-		success : function(result) {
-			reload(result.code == 200)
-		}
-	})
 });

@@ -16,7 +16,7 @@ insert into users(id, username, password, regist_time) values(1, 'admin', '9aa75
 drop table if exists menu;
 CREATE TABLE menu (
   name varchar(50) NOT NULL,
-  parent_id int NOT NULL,
+  parent_id bigint NOT NULL,
   create_time datetime NOT NULL,
   url varchar(50) DEFAULT 'javascript:;',
   sort int NOT NULL,

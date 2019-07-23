@@ -3,6 +3,8 @@ package com.smile.operation.menu.entity;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.smile.operation.common.BaseEntity;
@@ -18,7 +20,7 @@ public class Menu extends BaseEntity {
 	private static final long serialVersionUID = 2948894578410132924L;
 	private String name;
 	@TableField(value = "parent_id")
-	private Integer parentId;
+	private Long parentId;
 	@TableField(value = "create_time")
 	private Date createTime;
 	private String url;
@@ -34,11 +36,11 @@ public class Menu extends BaseEntity {
 		this.name = name;
 	}
 
-	public Integer getParentId() {
+	public Long getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(Integer parentId) {
+	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
 
@@ -55,7 +57,11 @@ public class Menu extends BaseEntity {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		if (StringUtils.isBlank(url)) {
+			this.url = "javascript:;";
+		} else {
+			this.url = url;
+		}
 	}
 
 	public Integer getSort() {

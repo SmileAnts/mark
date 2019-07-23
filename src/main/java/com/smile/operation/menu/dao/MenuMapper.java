@@ -12,5 +12,5 @@ public interface MenuMapper extends BaseMapper<Menu> {
 	/**
 	 * 查找一级菜单
 	 */
-	public List<Menu> menus(Integer parentId);
+	public List<Menu> menus(Long parentId);
 }
