@@ -51,7 +51,7 @@ public class MenuController {
 	public Result<Integer> add(Menu menu) {
 		Validate.isTrue(menu != null, "menu 不能为空");
 		menu.setCreateTime(Converters.nowTime());
-		Boolean status = iMenuServiceImpl.insertOrUpdate(menu);
+		Boolean status = iMenuServiceImpl.saveOrUpdate(menu);
 		if (status) {
 			return Result.success();
 		}

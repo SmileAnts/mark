@@ -19,12 +19,12 @@ spring:
     database: 0
     host: localhost
     port: 6379
-    password: PROCEED2017
+    password: 'PROCEED2017'
     jedis.pool.max-active: 8
     jedis.pool.max-wait: -1
     jedis.pool.max-idle: 8
     jedis.pool.min-idle: 0
-    timeout: 0
+    timeout: 5000
   jpa:
     show-sql: true
 mybatis-plus:

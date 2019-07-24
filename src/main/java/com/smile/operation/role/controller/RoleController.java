@@ -55,7 +55,7 @@ public class RoleController extends BaseController {
 	public Result<Object> add(Role role) {
 		Validate.isTrue(role != null, "role is null");
 		role.setCreateTime(Converters.nowTime());
-		Boolean result = iRoleServiceImpl.insertOrUpdate(role);
+		Boolean result = iRoleServiceImpl.saveOrUpdate(role);
 		return result ? Result.success(CodeMsg.SUCCESS, "新增成功") : Result.error(CodeMsg.FALSE, "新增失败");
 	}
 

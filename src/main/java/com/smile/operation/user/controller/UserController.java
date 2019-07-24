@@ -54,7 +54,7 @@ public class UserController extends BaseController {
 			user.setRegistTime(Converters.nowTime());
 		}
 		if (checkUser(user.getUsername())) {
-			return Result.success(userService.insertOrUpdate(user));
+			return Result.success(userService.saveOrUpdate(user));
 		}
 		return Result.error(CodeMsg.USER_EXSIST);
 	}
