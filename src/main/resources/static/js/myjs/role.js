@@ -2,6 +2,7 @@ var table = layui.table
 var form = layui.form
 var doubbleClick = true
 var tree = layui.tree
+var roleId = []
 // 头工具栏事件
 table.on('toolbar(role)', function(obj) {
 	var checkStatus = table.checkStatus(obj.config.id);
@@ -10,13 +11,10 @@ table.on('toolbar(role)', function(obj) {
 		var data = checkStatus.data;
 		layer.open({
 			type : 1,
-			title : '新增用户',
+			title : '新增角色',
 			content : $('#form'),
 			area : [ '500px' ]
 		});
-		break;
-	case 'edit':
-		
 		break;
 	case 'del':
 		if (checkStatus.data.length == 0){
@@ -66,4 +64,61 @@ function reload(status){
 function save (){
 	var checkedData = tree.getChecked('menu'); // 获取选中节点的数据
 	console.log(checkedData)
+}
+// 选中角色事件
+table.on('checkbox(role)', function(obj){
+	if(obj.checked){
+		roleId.push(obj.data.id)
+	} else {
+		var index = roleId.indexOf(obj.data.id)
+		roleId.splice(index,1) 
+	}
+	if(roleId.length > 0){
+		$("#save").css("display","")
+	} else {
+		$("#save").css("display","none")
+	}
+});
+
+// 下边为menu
+layui.use('tree', function() {
+	var tree = layui.tree;
+	var node = [];
+	$.ajax({
+	  url: "/menu/query",
+	  success : function(result){
+		  treeData(result.data, node)
+		  tree.render({
+			  elem : '#menu',
+			  showCheckbox : true,
+			  id : 'menu',
+			  accordion : false,
+			  data : node
+		  });
+	  }
+	})
+});
+
+function treeData(datas, array){
+	datas.forEach(data =>{
+		var index = datas.indexOf(data)
+		array[index] = {
+			'title' : data.name == null ? data.title : data.name,
+			'id' : data.id,
+			'checked' : false,
+			'spread' : false
+		}
+		if(data.children && data.children.length > 0){
+			array[index].children = data.children
+			data.children.forEach(child => {
+				var childIndex = data.children.indexOf(child)
+				array[index].children[childIndex] = {
+					'title' : child.name,
+					'id' : child.id,
+					'checked' : false
+				}
+			})
+			treeData(datas[index].children, array[index].children)
+		}
+	})
 }

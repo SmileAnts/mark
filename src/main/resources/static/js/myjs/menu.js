@@ -161,47 +161,6 @@ table.on('toolbar(child)', function(obj) {
 	;
 });
 
-layui.use('tree', function() {
-	var tree = layui.tree;
-	var node = [];
-	$.ajax({
-	  url: "/menu/query",
-	  success : function(result){
-		  treeData(result.data, node)
-		  tree.render({
-			  elem : '#menu',
-			  showCheckbox : true,
-			  id : 'menu',
-			  accordion : false,
-			  data : node
-		  });
-	  }
-	})
-});
-
-function treeData(datas, array){
-	datas.forEach(data =>{
-		var index = datas.indexOf(data)
-		array[index] = {
-			'title' : data.name == null ? data.title : data.name,
-			'id' : data.id,
-			'checked' : false,
-			'spread' : false
-		}
-		if(data.children && data.children.length > 0){
-			array[index].children = data.children
-			data.children.forEach(child => {
-				var childIndex = data.children.indexOf(child)
-				array[index].children[childIndex] = {
-					'title' : child.name,
-					'id' : child.id,
-					'checked' : false
-				}
-			})
-			treeData(datas[index].children, array[index].children)
-		}
-	})
-}
 
 // 监听行双击事件
 table.on('rowDouble(menu)', function(obj){

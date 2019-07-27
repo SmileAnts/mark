@@ -31,4 +31,24 @@ public class FreeMarkerService {
 		temp.process(root, out);
 		out.close();
 	}
+
+	public void generateEntity() {
+
+	}
+
+	public void generateController() {
+
+	}
+
+	public void generateService() {
+
+	}
+
+	public void generateMapper() {
+
+	}
+
+	public void generateXml() {
+
+	}
 }
