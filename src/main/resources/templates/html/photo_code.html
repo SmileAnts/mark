@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>相册管理</title>
+<link rel="stylesheet" type="text/css" href="/js/layui/css/layui.css">
+<style>
+.layui-table-body {
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<table class="layui-table" id="photoCode"
+		lay-data="{height:600, url:'/code/query', page:true, id:'photoCode',toolbar: '#barDemo',defaultToolbar:[] }"
+		lay-filter="photoCode">
+		<thead>
+			<tr>
+				<th lay-data="{ type: 'checkbox'}"></th>
+				<th lay-data="{field:'id', sort: true, width : 200}">ID</th>
+				<th lay-data="{field:'name'}">相册名称</th>
+				<th lay-data="{field:'createTime'}">创建时间</th>
+			</tr>
+		</thead>
+	</table>
+
+	<form class="layui-form" id="form" hidden="hidden"
+		style="margin-top: 10px; margin-right: 45px" lay-filter="userForm">
+		<div class="layui-form-item" hidden="hidden">
+			<div class="layui-input-block">
+				<input type="text" placeholder="请输入" autocomplete="off"
+					class="layui-input" value="0" id="index">
+			</div>
+		</div>
+		<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+		<div class="layui-form-item" hidden="hidden">
+			<div class="layui-input-block">
+				<input type="text" name="id" placeholder="请输入" autocomplete="off"
+					class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">相册名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" placeholder="请输入" autocomplete="off"
+					class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+			</div>
+		</div>
+	</form>
+
+	<script type="text/html" id="barDemo">
+ 	 <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
+ 	 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/layui/layui.all.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/myjs/photoCode.js"></script>
+</html>
