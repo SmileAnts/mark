@@ -18,8 +18,9 @@ table.on('toolbar(photo)', function(obj) {
 			url : '/code/query',
 			success : function (result){
 				result.data.forEach(photoCode => {
-					 $("#select").append("<option value="+photoCode.id+">"+photoCode.name+"</option>")
+					 $("#select").append("<option value='"+photoCode.id+"'>"+photoCode.name+"</option>")
 				})
+				form.render('select'); // 刷新select选择框渲染
 			}
 		})
 		$("#index").val(index)
