@@ -42,6 +42,20 @@ table.on('toolbar(photoCode)', function(obj) {
 			})
 		});
 		break;
+	case 'create':
+		layer.confirm('生成二维码?',{btn: ['确定', '取消'], title: "提示"}, function(index){
+			$.ajax({
+				url : '/code/create',
+				success : function(result) {
+					layer.close(index)
+					layer.open({
+						title : '二维码路径',
+						content : result
+					})
+				}
+			})
+		});
+		break;
 	}
 	;
 });

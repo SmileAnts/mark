@@ -66,7 +66,7 @@ public class PhotoCodeController {
 	 */
 	@RequestMapping("/create")
 	@ResponseBody
-	public void code() {
+	public String code() {
 		try {
 			System.out.println(System.getProperty("user.dir"));
 			String text = "http://www.baidu.com"; // 二维码内容
@@ -79,10 +79,12 @@ public class PhotoCodeController {
 			// 生成二维码
 			File outputFile = new File(System.getProperty("user.dir") + "/" + "new.jpg");
 			MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
+			return System.getProperty("user.dir") + "/" + "new.jpg";
 		} catch (WriterException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }
