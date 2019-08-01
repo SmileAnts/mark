@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,7 +70,7 @@ public class PhotoCodeController {
 	public String code() {
 		try {
 			System.out.println(System.getProperty("user.dir"));
-			String text = "http://www.baidu.com"; // 二维码内容
+			String text = "http://192.168.1.67:8080/code/phone"; // 二维码内容
 			String format = "jpg";// 二维码的图片格式
 
 			Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
@@ -86,5 +87,12 @@ public class PhotoCodeController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@RequestMapping("/phone")
+	public String codePhoto(Model model) {
+		List<PhotoCode> photoCodes = photoCodeService.selectList(WrapperUtil.selectList(new PhotoCode()));
+		model.addAttribute("photo", photoCodes);
+		return "html/phone.html";
 	}
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/css/layui.css">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<style type="text/css">
+.layui-body {
+	overflow: hidden
+}
+</style>
+</head>
+<body>
+	<div th:each="p,index : ${photo}" style="width: 10%; height: 10%">
+		p
+	</div>
+</body>
+</html>
