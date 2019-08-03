@@ -17,8 +17,19 @@
 </style>
 </head>
 <body>
-	<div th:each="p,index : ${photo}" style="width: 10%; height: 10%">
-		p
+	<div class="layui-row">
+		<a th:each="phone,iterStat : ${photos}" class="layui-col-xs5"
+			style="margin: 4%;padding:10px; background-color: red"
+			th:href="@{/photo/detail(id=${phone.id})}" th:text="${phone.name}">
+		</a>
 	</div>
 </body>
+<script type="text/javascript">
+	$(function() {
+		var height = $(".layui-col-xs5").width()
+		$(".layui-col-xs5").each(function(index, dom) {
+			$(dom).height(height)
+		})
+	})
+</script>
 </html>

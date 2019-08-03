@@ -92,7 +92,7 @@ public class PhotoCodeController {
 	@RequestMapping("/phone")
 	public String codePhoto(Model model) {
 		List<PhotoCode> photoCodes = photoCodeService.selectList(WrapperUtil.selectList(new PhotoCode()));
-		model.addAttribute("photo", photoCodes);
+		model.addAttribute("photos", photoCodes);
 		return "html/phone.html";
 	}
 }

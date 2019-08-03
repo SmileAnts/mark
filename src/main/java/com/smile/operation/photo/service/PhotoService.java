@@ -75,4 +75,15 @@ public class PhotoService extends ServiceImpl<PhotoMapper, Photo> {
 		}
 		return Boolean.TRUE;
 	}
+
+	/**
+	 * 根据相册id 查询相片
+	 * 
+	 * @return
+	 */
+	public List<Photo> detail(Long photoCodeId) {
+		EntityWrapper<Photo> wp = WrapperUtil.selectList(new Photo(), "url");
+		wp.eq("photo_code_id", photoCodeId);
+		return selectList(wp);
+	}
 }

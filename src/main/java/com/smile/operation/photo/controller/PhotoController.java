@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,5 +49,12 @@ public class PhotoController {
 		Validate.isTrue(ids != null, "ids is not null");
 		Boolean result = photoService.deleteIds(ids);
 		return Result.success(result);
+	}
+
+	@RequestMapping("/detail")
+	public String detail(@RequestParam("id") Long phoneCodeId, Model model) {
+		Validate.isTrue(phoneCodeId != null, "phoneCodeId is not null");
+		model.addAttribute("photo", photoService.detail(phoneCodeId));
+		return "html/photo_detail.html";
 	}
 }

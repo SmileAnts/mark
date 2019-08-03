@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>详情</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" type="text/css" href="/css/layui.css">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<style type="text/css">
+img {
+	height: 100px;
+	width: 100px
+}
+</style>
+</head>
+<body>
+	<div th:each="img : ${photo}">
+		<img /> <span th:text="${img.url}" style="display: none;"
+			class="name"></span>
+		<canvas id="myCanvas" width=1440 height=900></canvas>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		var reader = new FileReader();
+		var $img = $('img')[0];
+		var $name = $('.name').eq(0)
+		reader.readAsDataURL(new Blob([ $name.html() ], {
+			type : "text/plain"
+		}));
+		reader.onloadend = function() {
+			/// deal data.
+			var img = new Image();
+			console.log(img)
+			/// after loader, result storage the file content result.
+			img.src = $name.html();
+			img.onload = function() {
+				var myCanvas = document.getElementById("myCanvas");
+				var cxt = myCanvas.getContext('2d');
+				cxt.drawImage(img, imgPosX, 0);
+				imgPosX += imgWidth;
+			}
+		}
+		/* var imgUrl = fr.readAsDataURL(new Blob([ $name.html() ], {
+			type : "text/plain"
+		})); */
+		/* console.log(imgUrl)
+		$($img).attr('src', $name.html()); */
+	})
+</script>
+</html>
