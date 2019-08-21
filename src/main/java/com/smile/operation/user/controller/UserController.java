@@ -2,6 +2,7 @@ package com.smile.operation.user.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	private Boolean checkUser(String username) {
+		Validate.isTrue(StringUtils.isNotEmpty(username), "username is not empty");
 		Users user = userService.findUserByUserName(username);
 		if (user == null) {
 			return true;
@@ -93,7 +95,7 @@ public class UserController extends BaseController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Result<Boolean> delete(@RequestParam("ids") Long[] ids) {
-		Validate.notEmpty(ids, "参数ids 不能为空");
+		Validate.isTrue(ArrayUtils.isNotEmpty(ids), "参数ids 不能为空");
 		Boolean delete = userService.deleteIds(ids);
 		return Result.success(delete);
 	}

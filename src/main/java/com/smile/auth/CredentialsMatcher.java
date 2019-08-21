@@ -7,6 +7,9 @@ import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
 public class CredentialsMatcher extends SimpleCredentialsMatcher {
 
+	/**
+	 * 密码对比
+	 */
 	@Override
 	public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
 		UsernamePasswordToken uToken = (UsernamePasswordToken) token;
