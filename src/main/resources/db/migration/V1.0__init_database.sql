@@ -50,17 +50,19 @@ CREATE TABLE role_menu (
   menu_id bigint NOT NULL,
   create_time datetime NOT NULL,
   id bigint NOT NULL,
+  role_id bigint NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 create index index_role_menu_menu_id on role_menu(menu_id);
-create index index_role_create_time on role_menu(create_time);
+create index index_role_menu_role_id on role_menu(role_id);
 
 drop table if exists role_user;
 CREATE TABLE role_user (
   user_id bigint NOT NULL,
   create_time datetime NOT NULL,
+  role_id bigint NOT NULL,
   id bigint NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 create index index_role_user_user_id on role_user(user_id);
-create index index_role_user_create_time on role_user(create_time);
+create index index_role_user_role_id on role_user(role_id);

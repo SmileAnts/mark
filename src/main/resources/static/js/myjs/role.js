@@ -63,7 +63,22 @@ function reload(status){
 
 function save (){
 	var checkedData = tree.getChecked('menu'); // 获取选中节点的数据
-	console.log(checkedData)
+	var menuIds = []
+	checkedData.forEach(i => {
+		menuIds.push(i.id)
+	})
+	console.log(menuIds.join(','))
+	console.log(roleId.join(','))
+	$.ajax({
+		url: '/role/setMenuRole',
+		data:{
+			roleIds : roleId.join(','),
+			menuIds : menuIds.join(',')
+		},
+		success:function(result){
+			console.log(result)
+		}
+	})
 }
 // 选中角色事件
 table.on('checkbox(role)', function(obj){

@@ -1,4 +1,5 @@
 var table = layui.table
+var userId = []
 var form = layui.form
 // 头工具栏事件
 table.on('toolbar(user)', function(obj) {
@@ -82,7 +83,8 @@ function reload(status){
 
 // 监听行双击事件
 table.on('rowDouble(user)', function(obj){
-  console.log(obj)
+  console.log(obj.data.id)
+  userId.push(obj.data.id)
   layer.open({
 		type : 1,
 		title : '添加角色',
@@ -90,3 +92,27 @@ table.on('rowDouble(user)', function(obj){
 		area : [ '600px' ]
 	});
 });
+
+table.on('toolbar(role)', function(obj) {
+	var checkStatus = table.checkStatus(obj.config.id);
+	var roleIds = []
+	checkStatus.data.forEach( role => {
+		roleIds.push(role.id)
+	})
+	console.log(roleIds.join(','))
+	console.log(userId.join(','))
+	switch (obj.event) {
+	case 'save':
+		$.ajax({
+			url: '/role/setUserRole',
+			data: {
+				roleIds : roleIds.join(','),
+				userIds : userId.join(',')
+			},
+			success: function(result){
+				console.log(result)
+			}
+		})
+		break;
+	}
+})
