@@ -14,6 +14,7 @@ import com.smile.operation.common.BaseController;
 import com.smile.operation.role.entity.Role;
 import com.smile.operation.role.service.IRoleServiceImpl;
 import com.smile.util.CodeMsg;
+import com.smile.util.CollectionUtil;
 import com.smile.util.Converters;
 import com.smile.util.Result;
 import com.smile.util.WrapperUtil;
@@ -79,13 +80,16 @@ public class RoleController extends BaseController {
 	 * 
 	 * @param menuIds 菜单的id
 	 * @param roleIds 角色的id
+	 * @return
 	 */
 	@RequestMapping("/setMenuRole")
 	@ResponseBody
-	public void setMenuRole(@RequestParam("menuIds") String menuIds, @RequestParam("roleIds") String roleIds) {
+	public Result<Object> setMenuRole(@RequestParam("menuIds") String menuIds, @RequestParam("roleIds") String roleIds) {
 		Validate.notEmpty(menuIds, "menuIds must not be empty");
 		Validate.notEmpty(roleIds, "roleIds must not be empty");
-		iRoleServiceImpl.setMenuRole(Arrays.asList(roleIds.split(",")), Arrays.asList(menuIds.split(",")));
+		iRoleServiceImpl.setMenuRole(CollectionUtil.parseLong(Arrays.asList(roleIds.split(","))),
+				CollectionUtil.parseLong(Arrays.asList(menuIds.split(","))));
+		return Result.success();
 	}
 
 	/**
@@ -93,12 +97,15 @@ public class RoleController extends BaseController {
 	 * 
 	 * @param userIds 用户id
 	 * @param roleIds 角色id
+	 * @return
 	 */
 	@RequestMapping("/setUserRole")
 	@ResponseBody
-	public void setUserRole(@RequestParam("userIds") String userIds, @RequestParam("roleIds") String roleIds) {
+	public Result<Object> setUserRole(@RequestParam("userIds") String userIds, @RequestParam("roleIds") String roleIds) {
 		Validate.notEmpty(userIds, "userIds must not be empty");
 		Validate.notEmpty(roleIds, "roleIds must not be empty");
-		iRoleServiceImpl.setUserRole(Arrays.asList(roleIds.split(",")), Arrays.asList(userIds.split(",")));
+		iRoleServiceImpl.setUserRole(CollectionUtil.parseLong(Arrays.asList(roleIds.split(","))),
+				CollectionUtil.parseLong(Arrays.asList(userIds.split(","))));
+		return Result.success();
 	}
 }

@@ -83,8 +83,11 @@ function reload(status){
 
 // 监听行双击事件
 table.on('rowDouble(user)', function(obj){
-  console.log(obj.data.id)
+  userId = []
   userId.push(obj.data.id)
+  table.reload('role', {
+	  url: '/role/list'
+  });
   layer.open({
 		type : 1,
 		title : '添加角色',
@@ -99,8 +102,6 @@ table.on('toolbar(role)', function(obj) {
 	checkStatus.data.forEach( role => {
 		roleIds.push(role.id)
 	})
-	console.log(roleIds.join(','))
-	console.log(userId.join(','))
 	switch (obj.event) {
 	case 'save':
 		$.ajax({
@@ -110,7 +111,7 @@ table.on('toolbar(role)', function(obj) {
 				userIds : userId.join(',')
 			},
 			success: function(result){
-				console.log(result)
+				layer.close(layer.index)
 			}
 		})
 		break;

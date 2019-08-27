@@ -41,11 +41,11 @@ public class IRoleServiceImpl extends ServiceImpl<RoleMapper, Role> {
 	 * @param userIds 用户
 	 */
 	@Transactional
-	public void setMenuRole(List<Object> roleIds, List<Object> menuIds) {
-		for (Object menuId : menuIds) {
-			this.deleteMenuRole(Long.valueOf(menuId.toString()));
-			for (Object roleId : roleIds) {
-				baseMapper.setMenuRole(redisClient.nextId(), Long.valueOf(roleId.toString()), Long.valueOf(menuId.toString()));
+	public void setMenuRole(List<Long> roleIds, List<Long> menuIds) {
+		for (Long menuId : menuIds) {
+			this.deleteMenuRole(menuId);
+			for (Long roleId : roleIds) {
+				baseMapper.setMenuRole(redisClient.nextId(), roleId, menuId);
 			}
 		}
 	}
@@ -56,11 +56,12 @@ public class IRoleServiceImpl extends ServiceImpl<RoleMapper, Role> {
 	 * @param roleIds
 	 * @param userIds
 	 */
-	public void setUserRole(List<Object> roleIds, List<Object> userIds) {
-		for (Object userId : userIds) {
-			this.deleteUserRole(Long.valueOf(userId.toString()));
-			for (Object roleId : roleIds) {
-				baseMapper.setUserRole(redisClient.nextId(), Long.valueOf(roleId.toString()), Long.valueOf(userId.toString()));
+	@Transactional
+	public void setUserRole(List<Long> roleIds, List<Long> userIds) {
+		for (Long userId : userIds) {
+			this.deleteUserRole(userId);
+			for (Long roleId : roleIds) {
+				baseMapper.setUserRole(redisClient.nextId(), roleId, userId);
 			}
 		}
 	}
