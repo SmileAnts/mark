@@ -69,6 +69,11 @@ function save (){
 	})
 	console.log(menuIds.join(','))
 	console.log(roleId.join(','))
+	if(menuIds.length <= 0 || roleId.length <= 0){
+		layer.msg("请选择菜单")
+	} else {
+		
+	}
 	$.ajax({
 		url: '/role/setMenuRole',
 		data:{
