@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.smile.operation.common.BaseController;
 import com.smile.operation.menu.entity.Menu;
 import com.smile.operation.menu.service.IMenuServiceImpl;
 import com.smile.util.Constants;
@@ -27,7 +28,7 @@ import com.smile.util.Result;
  */
 @Controller
 @RequestMapping("/menu")
-public class MenuController {
+public class MenuController extends BaseController {
 	@Autowired
 	private IMenuServiceImpl iMenuServiceImpl;
 

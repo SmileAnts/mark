@@ -48,7 +48,7 @@
 		<div class="layui-side layui-bg-black">
 			<div class="layui-side-scroll">
 				<ul class="layui-nav layui-nav-tree">
-					<li class="layui-nav-item layui-nav-itemed"
+					<li shiro:hasRole="admin" class="layui-nav-item layui-nav-itemed"
 						th:each="menu : ${menus}"><a class=""
 						th:lay-href="${menu.url}" th:text="${menu.name}"></a>
 						<dl class="layui-nav-child"

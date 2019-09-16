@@ -1,8 +1,10 @@
 server:
   port: 8080
 test:
-  name: xuyongqiang
+  name : xu
 spring:
+  profiles:
+    active: prod
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/smile?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
