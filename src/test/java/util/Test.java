@@ -1,19 +1,25 @@
 package util;
 
+import org.jboss.logging.Logger;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.Application;
+import com.smile.operation.common.PropTest;
 import com.smile.operation.redis.RedisClient;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class Test {
 
+	private Logger logger = Logger.getLogger(getClass());
+
 	@Autowired
 	private RedisClient redisClient;
+	@Autowired
+	private PropTest propTest;
 
 	@org.junit.Test
 	public void MyTest() {
@@ -38,4 +44,9 @@ public class Test {
 	public void modulTest() {
 	}
 
+	@org.junit.Test
+	public void pro() {
+		logger.info(propTest.renName);
+		logger.info(propTest.getName());
+	}
 }

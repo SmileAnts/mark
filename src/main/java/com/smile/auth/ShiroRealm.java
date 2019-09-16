@@ -11,6 +11,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smile.operation.user.entity.Users;
@@ -20,12 +22,14 @@ public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
 	private IUserServiceImpl userService;
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**
 	 * 授权
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		logger.info("进入授权");
 		return null;
 	}
 
@@ -51,8 +55,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		// 盐值
 		ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUsername());
 		// 封装用户信息，构建AuthenticationInfo对象并返回
-		AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(), credentialsSalt,
-				realmName);
+		AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user, user.getPassword(), credentialsSalt, realmName);
 		return authcInfo;
 	}
 
