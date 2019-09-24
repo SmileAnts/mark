@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Vector;
+
 import org.jboss.logging.Logger;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,20 @@ public class Test {
 
 	@org.junit.Test
 	public void modulTest() {
+		
 	}
 
 	@org.junit.Test
 	public void pro() {
 		logger.info(propTest.renName);
 		logger.info(propTest.getName());
+	}
+	
+	public static void main(String[] args) {
+		Vector<String> v = new Vector<>();
+		v.add("123");
+		for (String string : v) {
+			System.out.println(string);
+		}
 	}
 }
