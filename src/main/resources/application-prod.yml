@@ -7,7 +7,7 @@ spring:
     active: prod
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/smile?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
+    url: jdbc:mysql://localhost:3306/smileant?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
     # url : jdbc:mysql://192.168.1.94:4002/smile?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
     username: root
     password: root
